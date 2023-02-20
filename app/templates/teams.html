@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% set active_page = "Teams" %}
+{% block content %}
+    <table class="table table-hover table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Flags Collected</th>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for team in teams.values() %}
+            <tr>
+                <form action="/api/teams/update" method="post">
+                    <input type="hidden" name="id" value={{ team.id }}>
+                    <th scope="row">{{ team.id }}</th>
+                    <th scope="row">{{ team.flags_collected }}</th>
+                    <td><input class="form-control" type="text" name="name" value="{{ team.name }}" required></td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <input class="btn btn-primary" type="submit" value="Update">
+                            <a class="btn btn-danger" href="/api/teams/delete?id={{ team.id }}">Delete</a>
+                        </div>
+                    </td>
+                </form>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br/>
+    <h3>Add New Team</h3>
+    <form action="/api/teams/create" method="post">
+        <table class="table table-hover table-bordered">
+            <tbody>
+                <tr>
+                    <td>
+                        {{ input("ID", "id", "number") }}
+                    </td>
+                    <td>
+                        {{ input("Name", "name", "text") }}
+                    </td>
+                    <td>
+                        <input class="btn btn-primary" type="submit" value="Add">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+{% endblock %}

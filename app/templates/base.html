@@ -1,0 +1,119 @@
+{% set navigation_bar = [
+    ("/exploits", "Exploit Scripts"),
+    ("/submitter", "Submitter"),
+    ("/flagformat", "Flag Format"),
+    ("/teams", "Teams")
+] -%}
+{% set active_page = active_page|default('Home') -%}
+
+{% macro input(name, id, type, value="") -%}
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">{{ name }}</span>
+        </div>
+        <input type="{{ type }}" class="form-control" placeholder="{{ name }}" aria-label="{{ name }}"
+               aria-describedby="basic-addon1" name="{{ id }}" id = {{ id }} value="{{ value }}" required>
+    </div>
+{%- endmacro %}
+
+{% macro bool_select(current, id) -%}
+    <select class="form-control" name="{{ id }}" required>
+        <option value="{{ true }}"{% if current == true %} selected{% endif %}>True</option>
+        <option value="{{ false }}"{% if current == false %} selected{% endif %}>False</option>
+    </select>
+{%- endmacro %}
+
+{% macro select(options, id, name="Select") -%}
+    <select class="form-control" name="{{ id }}" required>
+        <option value="" selected>{{ name }}</option>
+        {% for option in options %}
+            <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+    </select>
+{%- endmacro %}
+
+{% macro input_bool_select(name, id) -%}
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">{{ name }}</span>
+        </div>
+        {{ bool_select(-1, id) }}
+    </div>
+{%- endmacro %}
+
+{% macro box_select(boxes, id) -%}
+    <select class="form-control" name="{{ id }}" required>
+        <option value="all" selected>All</option>
+        {% for box in boxes %}
+            <option value="{{ box.team_num }}-{{ box.service_ip }}">
+                {{ box.team.name }} - {{ box.service.name }}
+            </option>
+        {% endfor %}
+    </select>
+{%- endmacro %}
+
+{% macro input_box_select(boxes, name, id) -%}
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">{{ name }}</span>
+        </div>
+        {{ box_select(boxes, id) }}
+    </div>
+{%- endmacro %}
+
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% block styles %}
+            <link rel="stylesheet" href="/static/bootstrap.css" >
+        {% endblock %}
+        <title>{{ active_page }}</title>
+    {% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Puppeteer</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            {% for path, name in navigation_bar %}
+                <li class="nav-item{% if name == active_page %} active{% endif %}">
+                    <a href="{{ path }}" class="nav-link">
+                        {{ name }}{% if name == active_page %} <span class="sr-only">(current)</span>{% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>
+<div id="card">
+    <h3 class="card-header">{{ active_page }}</h3>
+    <div class="card-body">
+        {% if messages %}
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+</div>
+{% block scripts %}
+    <script src="/static/jquery.js"></script>
+    <script src="/static/bootstrap.js"></script>
+    <script src="/static/popper.js"></script>
+{% endblock %}
+</body>
+</html>

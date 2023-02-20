@@ -1,0 +1,6 @@
+flask
+requests
+bootstrap-flask
+flask-sqlalchemy
+flask-codemirror
+flask-wtf

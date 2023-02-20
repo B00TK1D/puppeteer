@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% set active_page = "Home" %}
+{% block content %}
+    <table class="table table-hover table-bordered">
+        <tbody>
+        <tr>
+            <td>Total Boxes</td>
+            <td>{{ total_boxes }}</td>
+        </tr>
+        <tr>
+            <td>Pwned Boxes</td>
+            <td>{{ pwned_boxes }}</td>
+        </tr>
+        <tr>
+            <td>Flags Found</td>
+            <td>{{ flags_found }}</td>
+        </tr>
+        <tr>
+            <td>Flags Submitted</td>
+            <td>{{ flags_submitted }}</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% set active_page = "Submitter Script" %}
+{% block content %}
+    <form action="/api/flagformat/update" method="post">
+        <script>
+            function testFlagFormat() {
+                var flagElement = document.getElementById("test-flag");
+                var flag = flagElement.value;
+                if (flag) {
+                    var regex = document.getElementById("regex").value;
+                    var result = document.getElementById("test-result");
+                    var regexObj = new RegExp(regex);
+                    // Regex must match the entire flag
+                    if (regexObj.test(flag) && flag.match(regexObj)[0] == flag) {
+                        flagElement.style.backgroundColor = "lightgreen";
+                    } else {
+                        flagElement.style.backgroundColor = "pink";
+                    }
+                }
+            }
+            function checkValidRegex() {
+                testFlagFormat();
+                var regexElement = document.getElementById("regex");
+                var regex = regexElement.value;
+                try {
+                    var regexObj = new RegExp(regex);
+                    regexElement.style.backgroundColor = "lightgreen";
+                } catch (e) {
+                    regexElement.style.backgroundColor = "pink";
+                }
+            }
+        </script>
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Flag Format (regex)</span>
+                </div>
+                <input onkeyup="checkValidRegex()" type="text" class="form-control" aria-label="Flag Format (regex)" aria-describedby="basic-addon1" name="regex" id="regex" value="{{ regex }}" required>
+            </div>
+        </div>
+        <br/>
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Test Flag Regex</span>
+                </div>
+                <input onkeyup="testFlagFormat()" type="text" class="form-control" aria-label="Test Flag Regex" aria-describedby="basic-addon1" id="test-flag">
+            </div>
+        </div>
+        <p id="test-result"></p>
+        <br/>
+        <a class="btn btn-secondary" href="/">Back</a>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <script>
+            checkValidRegex();
+        </script>
+    </form>
+{% endblock %}
