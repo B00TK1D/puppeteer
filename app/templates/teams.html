@@ -7,7 +7,7 @@
     <table class="table table-hover table-bordered">
         <thead class="thead-light">
         <tr>
-            <th scope="col">Flags Collected</th>
+            <th scope="col">Flags Captured</th>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Actions</th>
@@ -18,7 +18,7 @@
             <tr>
                 <form action="/api/teams/update" method="post">
                     <input type="hidden" name="id" value={{ team.id }}>
-                    <th scope="row">{{ team.flags_collected }}</th>
+                    <th scope="row">{{ team.flags_captured }}</th>
                     <td><input class="form-control" type="number" name="newid" value="{{ team.id }}" required></td>
                     <td><input class="form-control" type="text" name="name" value="{{ team.name }}" required></td>
                     <td>

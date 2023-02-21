@@ -5,6 +5,7 @@ import teams
 import targets
 import exploits
 import services
+import home
 import submitter
 import flagformat
 
@@ -29,10 +30,6 @@ def run():
 ####################
 
 ### Exploit Routes ###
-@app.route("/", methods=["GET"])
-def index():
-    return flask.render_template("index.html")
-
 @app.route("/exploits", methods=["GET"])
 def route_exploits():
     return exploits.view_exploits()
@@ -87,6 +84,11 @@ def route_services():
 @app.route("/targets", methods=["GET"])
 def route_targets():
     return targets.view_targets()
+
+### Dashboard Routes ###
+@app.route("/", methods=["GET"])
+def route_home():
+    return home.view_home()
 
 
 

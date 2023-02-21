@@ -56,6 +56,7 @@ def update_service():
 
         service["id"] = newid
         service["name"] = name
+        service["notes"] = notes
 
         del db.data["services"][id]
         db.data["services"][newid] = service

@@ -16,6 +16,9 @@ import flagformat
 
 flagdb = {}
 
+total_found = 0
+total_submitted = 0
+
 status_msg = "Not yet run"
 
 # Helper functions
@@ -43,19 +46,16 @@ def get_status(output):
 def submit_flag(flag):
     os.system("chmod +x " + settings.SUBMITTER_FILE)
     esc_flag = re.sub("(\{|\})", r"\\\1", flag)
-    print(esc_flag)
     output = subprocess.check_output(settings.SUBMITTER_FILE + " \"" + esc_flag + "\"", shell=True, stderr=subprocess.STDOUT)
     status = get_status(output.decode("utf-8"))
     return status
 
 def handle_data(exploit_id, team_id, service_id, data):
+    global total_found
     # Handle output from exploits
-    print("Handling data")
     flags = flagformat.extract_flags(data)
     for flag in flags:
-        print("Flag: " + flag)
         if flag not in flagdb:
-            print("Flag not in flagdb")
             flagdb[flag] = {
                 "flag": flag,
                 "exploit_id": exploit_id,
@@ -64,18 +64,15 @@ def handle_data(exploit_id, team_id, service_id, data):
                 "submitted": 0,
                 "valid": 0,
             }
-            print("Flag added to flagdb")
-            try:
-                db.data["teams"][team_id]["flags_captured"] += 1
-                db.data["services"][service_id]["flags_captured"] += 1
-                db.data["exploits"][exploit_id]["flags_captured"] += 1
-            except Exception as e:
-                print("Error updating flag count: " + str(e))
-            print("Flag added to database")
-    print("Done in handle_data")
+            db.data["teams"][team_id]["flags_captured"] += 1
+            db.data["services"][service_id]["flags_captured"] += 1
+            db.data["exploits"][exploit_id]["flags_captured"] += 1
+            total_found += 1
+    return len(flags)
+
 
 def submit():
-    global status_msg
+    global status_msg, total_submitted
     # Submit flags to the submitter
     last_anysuccess = False
     while True:
@@ -102,6 +99,7 @@ def submit():
                     flagdb[flag]["valid"] = 1
                     anysuccess = True
                     submitted += 1
+                    total_submitted += 1
                 elif result == "invalid":
                     flagdb[flag]["submitted"] = 1
                     flagdb[flag]["valid"] = 0

@@ -25,11 +25,15 @@
     </select>
 {%- endmacro %}
 
-{% macro select(options, id, name="Select") -%}
+{% macro select(options, id, name="Select", selected=option) -%}
     <select class="form-control" name="{{ id }}" required>
         <option value="" selected>{{ name }}</option>
         {% for option in options %}
-            <option value="{{ option }}">{{ option }}</option>
+            {% if option == selected %}
+                <option value="{{ option }}" selected>{{ option }}</option>
+            {% else %}
+                <option value="{{ option }}">{{ option }}</option>
+            {% endif %}
         {% endfor %}
     </select>
 {%- endmacro %}

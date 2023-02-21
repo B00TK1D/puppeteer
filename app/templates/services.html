@@ -7,9 +7,10 @@
     <table class="table table-hover table-bordered">
         <thead class="thead-light">
         <tr>
-            <th scope="col">Flags Collected</th>
+            <th scope="col">Flags Captured</th>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
+            <th scope="col">Notes</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -18,7 +19,7 @@
             <tr>
                 <form action="/api/services/update" method="post">
                     <input type="hidden" name="id" value={{ service.id }}>
-                    <th scope="row">{{ service.flags_collected }}</th>
+                    <th scope="row">{{ service.flags_captured }}</th>
                     <td><input class="form-control" type="number" name="newid" value="{{ service.id }}" required></td>
                     <td><input class="form-control" type="text" name="name" value="{{ service.name }}" required></td>
                     <td><input class="form-control" type="text" name="notes" value="{{ service.notes }}"></td>

@@ -20,6 +20,25 @@ def list_targets():
             targets[ip] = target
     return targets
 
+def list_service_targets(service_id):
+    format = db.data["settings"]["targetformat"]
+    targets = {}
+    for team in db.data["teams"].values():
+        try:
+            service = db.data["services"][service_id]
+        except KeyError:
+            return {}
+        ip = format.replace("T", str(team["id"])).replace("S", str(service["id"]))
+        target = {
+            "team": team["name"],
+            "teamid": str(team["id"]),
+            "service": service["name"],
+            "serviceid": str(service["id"]),
+            "ip": ip
+        }
+        targets[ip] = target
+    return targets
+
 
 # Frontend views
 def view_targets():
