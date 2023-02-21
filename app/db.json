@@ -1,19 +1,19 @@
 {
     "exploits": {
-        "0": {
-            "id": 0,
-            "name": "curl",
-            "frequency": 60,
-            "path": "curl",
-            "flags_captured": 0,
-            "boxes_vulnerable": 0,
-            "log": {}
-        },
         "1": {
             "id": 1,
             "name": "DNS Zone Transfer",
             "frequency": 60,
             "path": "DNS Zone Transfer",
+            "flags_captured": 0,
+            "boxes_vulnerable": 0,
+            "log": {}
+        },
+        "0": {
+            "id": 0,
+            "name": "curl",
+            "frequency": "10",
+            "path": "curl",
             "flags_captured": 0,
             "boxes_vulnerable": 0,
             "log": {}

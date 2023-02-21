@@ -18,7 +18,7 @@ def sort_teams():
 
 # Backend functions
 def create_team():
-    id = int(flask.request.form.get("id"))
+    id = flask.request.form.get("id")
     name = flask.request.form.get("name")
 
     if id in db.data["teams"]:
@@ -42,8 +42,8 @@ def create_team():
     return flask.render_template("teams.html", teams = teams, messages = ["Team " + str(id) + " created"])
 
 def update_team():
-    id = int(flask.request.form.get("id"))
-    newid = int(flask.request.form.get("newid"))
+    id = flask.request.form.get("id")
+    newid = flask.request.form.get("newid")
     name = str(flask.request.form.get("name"))
     
     if newid != id and newid in db.data["teams"]:
@@ -69,7 +69,7 @@ def update_team():
         return flask.render_template("teams.html", teams = teams, messages = ["Team " + str(id) + " does not exist"])
 
 def delete_team():
-    id = int(flask.request.args.get("id"))
+    id = flask.request.args.get("id")
 
     try:
         del db.data["teams"][id]

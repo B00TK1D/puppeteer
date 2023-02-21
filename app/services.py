@@ -16,7 +16,7 @@ def view_services():
 
 # Backend functions
 def create_service():
-    id = int(flask.request.form.get("id"))
+    id = str(flask.request.form.get("id"))
     name = flask.request.form.get("name")
     notes = flask.request.form.get("notes")
 
@@ -42,8 +42,8 @@ def create_service():
     return flask.render_template("services.html", services = services, messages = ["Service " + name + " created"])
 
 def update_service():
-    id = int(flask.request.form.get("id"))
-    newid = int(flask.request.form.get("newid"))
+    id = str(flask.request.form.get("id"))
+    newid = str(flask.request.form.get("newid"))
     name = str(flask.request.form.get("name"))
     notes = str(flask.request.form.get("notes"))
     
@@ -71,7 +71,7 @@ def update_service():
         return flask.render_template("services.html", services = services, messages = ["Service " + str(id) + " does not exist"])
 
 def delete_service():
-    id = int(flask.request.args.get("id"))
+    id = str(flask.request.args.get("id"))
 
     try:
         del db.data["services"][id]
