@@ -12,3 +12,359 @@
 [2023-02-20 20:41:38]: exploit - Exploit 0 status success for local on host (127.0.0.1)
 [2023-02-20 20:43:22]: exploit - Exploit 0 status success for local on host (127.0.0.1)
 [2023-02-20 20:46:21]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 21:55:35]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:08:12]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:16:16]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:17:46]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:21:18]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:23:26]: exploit - Exploit 0 status success for 0 on 1 (127.0.0.1)
+[2023-02-20 22:25:42]: exploit - Exploit 0 status success for 0 on 1 (127.0.0.1)
+[2023-02-20 22:26:13]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:31:33]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:35:45]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:36:47]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:37:12]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:37:14]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:37:16]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:37:18]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:37:20]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:37:22]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:37:24]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:37:26]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:37:28]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:38:00]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:38:01]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:38:03]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:38:05]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:38:07]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:38:09]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:38:11]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:38:13]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:38:15]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:38:17]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:38:19]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:38:21]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: &lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;&lt;head&gt;
+&lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+&lt;h1&gt;Not Found&lt;/h1&gt;
+&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+)
+[2023-02-20 22:38:24]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:26]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:28]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:30]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:32]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:34]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:36]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:38]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:40]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:42]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:44]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:46]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:48]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:50]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:52]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:54]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:56]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:38:58]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:39:00]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:39:02]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:39:04]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {&quot;code&quot;:&quot;error: invalid flag format&quot;})
+[2023-02-20 22:39:44]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:39:45]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:39:47]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:39:49]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:39:51]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:39:53]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:39:55]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:39:57]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:00]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:02]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:04]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:06]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:08]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:10]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:12]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:14]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:16]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:18]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:20]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:22]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:24]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:26]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:28]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:30]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:32]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:34]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:36]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:38]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:40:56]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:40:58]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:00]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:02]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:04]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:06]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:08]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:10]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:12]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:14]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:16]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:18]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:20]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:22]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:24]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:26]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:28]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:41:30]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:32]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:35]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:37]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:39]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:41]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:43]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:45]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:47]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:49]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:51]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:53]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:55]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:57]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:41:59]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:01]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:03]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:05]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:07]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:09]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:11]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:13]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:15]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:17]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:19]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:21]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:23]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:25]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:27]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:30]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:32]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:34]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:36]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:38]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:40]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:42]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:44]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:46]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:48]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:50]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:52]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:54]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:56]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:42:58]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: flag{a12a.495c.99d4}
+{"code":"error: invalid flag format"})
+[2023-02-20 22:45:23]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:45:24]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:45:26]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:45:28]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:45:30]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:45:32]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:45:34]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:45:36]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:45:39]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:45:41]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:45:43]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:45:45]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:45:47]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:22]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:48:24]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:26]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:28]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:30]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:32]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:34]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:36]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:38]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:40]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:42]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:44]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:46]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:48]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:48:50]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:50:05]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:50:07]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:50:09]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:50:11]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (failure: {"code":"error: invalid flag format"})
+[2023-02-20 22:50:40]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:50:42]: submit - Submitted flag{a12a.495c.99d4} for 0 on 1 (success)
+[2023-02-20 22:52:02]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 22:52:04]: submit - Submitted flag${a12a.495c.99d4} for 0 on 1 (success)
+[2023-02-20 22:52:42]: exploit - Exploit 0 status success for local on host (127.0.0.1)

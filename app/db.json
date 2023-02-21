@@ -14,7 +14,7 @@
             "name": "curl",
             "frequency": "10",
             "path": "curl",
-            "flags_captured": 0,
+            "flags_captured": 13,
             "boxes_vulnerable": 0,
             "log": {}
         }
@@ -23,7 +23,7 @@
         "0": {
             "id": 0,
             "name": "local",
-            "flags_collected": 0
+            "flags_captured": 13
         }
     },
     "services": {
@@ -31,13 +31,13 @@
             "id": 1,
             "name": "host",
             "notes": "",
-            "flags_collected": 0
+            "flags_captured": 13
         }
     },
     "submissions": {},
     "settings": {
         "targetformat": "127.0.T.S",
-        "flagformat": "ncx{.*}",
+        "flagformat": "flag\\${.*}",
         "submitrate": 1000,
         "correctregex": ".*success.*",
         "incorrectregex": ".*fail.*"

@@ -63,6 +63,10 @@ def route_exploit_log_details():
 def route_submitter():
     return submitter.view_submitter()
 
+@app.route("/submitter/log", methods=["GET"])
+def route_submitter_log():
+    return submitter.view_submit_log()
+
 
 ### Flag Format Routes ###
 @app.route("/flagformat", methods=["GET"])

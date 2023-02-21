@@ -12,7 +12,9 @@ def list_targets():
             ip = format.replace("T", str(team["id"])).replace("S", str(service["id"]))
             target = {
                 "team": team["name"],
+                "teamid": str(team["id"]),
                 "service": service["name"],
+                "serviceid": str(service["id"]),
                 "ip": ip
             }
             targets[ip] = target

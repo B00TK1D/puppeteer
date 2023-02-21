@@ -1,5 +1,5 @@
 #!/bin/sh
 
-FLAG=$1
+# flag is passed as $1
 
-curl http://scoreboard.com/submit?flag=$FLAG
+curl http://127.0.0.1:8888/submit?flag=$1

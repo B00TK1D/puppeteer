@@ -28,7 +28,7 @@ def create_service():
         "id": id,
         "name": name,
         "notes": notes,
-        "flags_collected": 0
+        "flags_captured": 0
     }
 
     db.data["services"][id] = service

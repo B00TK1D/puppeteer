@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% set active_page = "Exploit Log" %}
+{% block content %}
+    <table class="table table-hover table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Time</th>
+            <th scope="col">Flag</th>
+            <th scope="col">Team</th>
+            <th scope="col">Service</th>
+            <th scope="col">Result</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in log.values() %}
+            <tr>
+                <td scope="row">{{ item.timestamp }}</td>
+                <th scope="row">{{ item.flag }}</th>
+                <th scope="row">{{ item.team }}</th>
+                <th scope="row">{{ item.service }}</th>
+                <th scope="row">{{ item.result }}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="/exploits">Back</a>
+{% endblock %}

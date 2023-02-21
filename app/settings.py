@@ -5,6 +5,7 @@ BASE_DIR = os.path.realpath(__file__).rsplit("/", 1)[0]
 
 # Database settings
 DB_FILE = os.path.join(BASE_DIR, "db.json")
+BACKUP_FREQUENCY = 5
 
 # Exploit settings
 EXPLOITS_DIR = os.path.join(BASE_DIR, "exploits")

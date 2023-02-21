@@ -46,7 +46,7 @@ def load():
 def backup():
     while True:
         save()
-        time.sleep(5)
+        time.sleep(settings.BACKUP_FREQUENCY)
 
 
 # Backup thread

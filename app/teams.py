@@ -28,7 +28,7 @@ def create_team():
     team = {
         "id": id,
         "name": name,
-        "flags_collected": 0
+        "flags_captured": 0
     }
 
     db.data["teams"][id] = team
