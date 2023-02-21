@@ -1,20 +1,97 @@
 {% extends "base.html" %}
-{% set active_page = "Submitter Script" %}
+{% set active_page = "Submitter Parameters" %}
 {% block content %}
+    <script>
+        window.history.replaceState({}, document.title, "/" + "submitter");
+    </script>
+    <script>
+        function testFormat() {
+            var element = document.getElementById("test");
+            var test = element.value;
+            if (test) {
+                var correctregex = document.getElementById("correctregex").value;
+                var incorrectregex = document.getElementById("incorrectregex").value;
+                var correctregexObj = new RegExp(correctregex);
+                var incorrectregexObj = new RegExp(incorrectregex);
+                // Regex must match the entire flag
+                if (correctregexObj.test(test) && test.match(correctregexObj)[0] == test) {
+                    element.style.backgroundColor = "lightgreen";
+                } else if (incorrectregexObj.test(test) && test.match(incorrectregexObj)[0] == test) {
+                    element.style.backgroundColor = "pink";
+                } else {
+                    element.style.backgroundColor = "lightyellow";
+                }
+            }
+        }
+        function checkValidRegexCorrect() {
+            testFormat();
+            var regexElement = document.getElementById("correctregex");
+            var regex = regexElement.value;
+            try {
+                var regexObj = new RegExp(regex);
+                regexElement.style.backgroundColor = "lightgreen";
+            } catch (e) {
+                regexElement.style.backgroundColor = "pink";
+            }
+        }
+        function checkValidRegexIncorrect() {
+            testFormat();
+            var regexElement = document.getElementById("incorrectregex");
+            var regex = regexElement.value;
+            try {
+                var regexObj = new RegExp(regex);
+                regexElement.style.backgroundColor = "lightgreen";
+            } catch (e) {
+                regexElement.style.backgroundColor = "pink";
+            }
+        }
+    </script>
     <form action="/api/submitter/update" method="post">
         {{ input("Rate Limiting (ms)", "rate", "number", rate) }}
+        <br/>
         <div class="form-group">
-            <label for="code">Submitter Script</label>
-            <p>Script will be run with the following syntax: ./submit &lt;flag&gt;</p>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Flag correct response (regex)</span>
+                </div>
+                <input onkeyup="checkValidRegexCorrect()" type="text" class="form-control" aria-label="Correct response (regex)" aria-describedby="basic-addon1" name="correctregex" id="correctregex" value="{{ correctregex }}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Flag incorrect response (regex)</span>
+                </div>
+                <input onkeyup="checkValidRegexIncorrect()" type="text" class="form-control" aria-label="Inorrect response (regex)" aria-describedby="basic-addon1" name="incorrectregex" id="incorrectregex" value="{{ incorrectregex }}" required>
+            </div>
+        </div>
+        <br/>
+        <p><i>Red = matches incorrect response, green = matches correct response, yellow = no match (check regex)</i></p>
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Test Response Regex</span>
+                </div>
+                <input onkeyup="testFormat()" type="text" class="form-control" aria-label="Test Response Regex" aria-describedby="basic-addon1" id="test">
+            </div>
+        </div>
+        <br/>
+        <div class="form-group">
+            <h3>Submitter Code</h3>
+            <p>Script will be run with the following syntax: ./submit &lt;flag&gt;, stdout will be parsed for success or failure based on above regex</p>
             <select class="form-control" name="template" id="select-template" onchange="document.location = '/submitter?template=' + document.getElementById('select-template').value;">
                 <option value="" selected>Load Template...</option>
                 {% for template in templates %}
                     <option value="{{ template }}" >{{ template }}</option>
                 {% endfor %}
             </select>
-            <textarea class="form-control" id="code" name="code" rows="20">{{ code }}</textarea>
+            <textarea class="form-control" id="code" name="code" rows="10">{{ code }}</textarea>
         </div>
         <a class="btn btn-secondary" href="/">Back</a>
         <button type="submit" class="btn btn-primary">Save</button>
-    </form>
+    </form> 
+    <script>
+        checkValidRegexCorrect();
+        checkValidRegexIncorrect();
+    </script>
 {% endblock %}

@@ -1,27 +1,24 @@
 import re
 import flask
 
-import settings
-
-
-regex = re.compile(settings.FLAGFORMAT_DEFAULT_REGEX)
+import db
 
 # Helper functions
 def extract_flags(text):
+    regex = re.compile(db.data["settings"]["flagformat"])
     return re.findall(regex, text)
 
 
 # Frontend views
 def view_flag_format():
-    return flask.render_template("flagformat.html", regex = regex.pattern)
+    return flask.render_template("flagformat.html", regex = db.data["settings"]["flagformat"])
 
 
 # Backend functions
 def update_flag_format():
-    global regex
-    regex = re.compile(flask.request.form.get("regex"))
+    db.data["settings"]["flagformat"] = flask.request.form.get("regex")
 
-    return flask.render_template("flagformat.html", regex = regex.pattern, messages = ["Flag format saved"])
+    return flask.render_template("flagformat.html", regex =  db.data["settings"]["flagformat"], messages = ["Flag format saved"])
 
 
 

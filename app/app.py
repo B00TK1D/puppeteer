@@ -3,7 +3,9 @@ from flask_bootstrap import Bootstrap4
 
 import db
 import teams
+import targets
 import exploits
+import services
 import submitter
 import flagformat
 
@@ -16,6 +18,11 @@ Bootstrap4(app)
 def main():
     # Initialize the database
     db.init()
+
+    db.load()
+
+    # Start backup thread
+    db.backup_thread.start()
 
     # Load the exploits
     exploits.load_exploits()
@@ -49,6 +56,14 @@ def route_new_exploit():
 def route_modify_exploit():
     return exploits.view_modify_exploit()
 
+@app.route("/exploits/log", methods=["GET"])
+def route_exploit_log():
+    return exploits.view_exploit_log()
+
+@app.route("/exploits/details", methods=["GET"])
+def route_exploit_log_details():
+    return exploits.view_exploit_log_details()
+
 
 ### Submitter Routes ###
 @app.route("/submitter", methods=["GET"])
@@ -65,6 +80,16 @@ def route_flag_format():
 @app.route("/teams", methods=["GET"])
 def route_teams():
     return teams.view_teams()
+
+### Service Routes ###
+@app.route("/services", methods=["GET"])
+def route_services():
+    return services.view_services()
+
+### Target Routes ###
+@app.route("/targets", methods=["GET"])
+def route_targets():
+    return targets.view_targets()
 
 
 
@@ -93,6 +118,10 @@ def route_unarchive_exploit():
 def route_delete_exploit():
     return exploits.delete_exploit()
 
+@app.route("/api/exploits/run", methods=["GET"])
+def route_run_exploit():
+    return exploits.run_exploit()
+
 
 ### Submitter API ###
 @app.route("/api/submitter/update", methods=["POST"])
@@ -117,6 +146,24 @@ def route_update_team():
 @app.route("/api/teams/delete", methods=["GET"])
 def route_delete_team():
     return teams.delete_team()
+
+### Service API ###
+@app.route("/api/services/create", methods=["POST"])
+def route_create_service():
+    return services.create_service()
+
+@app.route("/api/services/update", methods=["POST"])
+def route_update_service():
+    return services.update_service()
+
+@app.route("/api/services/delete", methods=["GET"])
+def route_delete_service():
+    return services.delete_service()
+
+### Target API ###
+@app.route("/api/targets/update", methods=["POST"])
+def route_update_target():
+    return targets.update_targets()
 
 
 if __name__ == "__main__":

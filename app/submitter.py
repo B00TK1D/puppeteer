@@ -1,13 +1,8 @@
 import os
 import flask
 
+import db
 import settings
-
-
-rate = settings.SUBMITTER_DEFAULT_RATE
-
-responses = []
-
 
 # Helper functions
 def get_submitter_templates():
@@ -21,29 +16,52 @@ def get_submitter_contents():
     with open(settings.SUBMITTER_FILE, "r") as f:
         return f.read()
 
+def submit_flag(flag):
+    os.system("chmod +x " + settings.SUBMITTER_FILE)
+    result = os.system(settings.SUBMITTER_FILE + " " + flag)
+    db.data["submissions"].append(result)
+
 
 # Frontend views
 def view_submitter():
     template = flask.request.args.get("template")
     code = ""
+    rate = db.data["settings"]["submitrate"]
+    correctregex = db.data["settings"]["correctregex"]
+    incorrectregex = db.data["settings"]["incorrectregex"]
     if template:
         code = get_submitter_template_contents(template)
     else:
         code = get_submitter_contents()
     templates = get_submitter_templates()
-    return flask.render_template("submitter.html", templates = templates, code = code, rate = rate)
+    return flask.render_template("submitter.html",
+                templates = templates,
+                code = code,
+                rate = rate,
+                correctregex = correctregex,
+                incorrectregex = incorrectregex
+            )
 
 
 # Backend functions
 def update_submitter():
-    global rate
     code = flask.request.form.get("code")
-    rate = int(flask.request.form.get("rate"))
+    db.data["settings"]["submitrate"] = int(flask.request.form.get("rate"))
+    db.data["settings"]["correctregex"] = flask.request.form.get("correctregex")
+    db.data["settings"]["incorrectregex"] = flask.request.form.get("incorrectregex")
 
-    with open(settings.SUBMITTER_FILE, "w") as f:
+    with open(settings.SUBMITTER_FILE, "w", newline='\n') as f:
+        code = code.replace('\r', '')
         f.write(code)
 
-    return flask.render_template("submitter.html", templates = get_submitter_templates(), code = code, rate = rate, messages = ["Submitter saved"])
+    return flask.render_template("submitter.html",
+            templates = get_submitter_templates(),
+            code = code,
+            rate = db.data["settings"]["submitrate"],
+            correctregex = db.data["settings"]["correctregex"],
+            incorrectregex = db.data["settings"]["incorrectregex"],
+            messages = ["Submitter saved"]
+        )
 
 
 
