@@ -1,5 +1,5 @@
 #!/bin/sh
 
-# flag is passed as $1
+FLAG=$1
 
-curl http://127.0.0.1:8888/submit?flag=$1
+curl -s http://127.0.0.1:8888/submit?flag=$FLAG

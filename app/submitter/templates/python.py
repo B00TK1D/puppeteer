@@ -3,6 +3,6 @@
 import requests
 import sys
 
-HOST = sys.argv[1]
+FLAG = sys.argv[1]
 
-r = requests.get('http://' + HOST + '/flag.txt')
+r = requests.get('http://scoreboard.com/submit?flag=' + FLAG)

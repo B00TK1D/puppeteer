@@ -14,7 +14,7 @@
             "name": "curl",
             "frequency": "10",
             "path": "curl",
-            "flags_captured": 13,
+            "flags_captured": 15,
             "boxes_vulnerable": 0,
             "log": {}
         }
@@ -23,7 +23,7 @@
         "0": {
             "id": 0,
             "name": "local",
-            "flags_captured": 13
+            "flags_captured": 15
         }
     },
     "services": {
@@ -31,7 +31,7 @@
             "id": 1,
             "name": "host",
             "notes": "",
-            "flags_captured": 13
+            "flags_captured": 15
         }
     },
     "submissions": {},

@@ -368,3 +368,8 @@
 [2023-02-20 22:52:02]: exploit - Exploit 0 status success for local on host (127.0.0.1)
 [2023-02-20 22:52:04]: submit - Submitted flag${a12a.495c.99d4} for 0 on 1 (success)
 [2023-02-20 22:52:42]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 23:00:53]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 23:00:55]: submit - Submitted flag${a12a.495c.99d4} for 0 on 1 (success)
+[2023-02-20 23:01:14]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 23:01:34]: exploit - Exploit 0 status success for local on host (127.0.0.1)
+[2023-02-20 23:01:36]: submit - Submitted flag${a12a.495c.99d5} for 0 on 1 (success)

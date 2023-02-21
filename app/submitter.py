@@ -44,7 +44,7 @@ def submit_flag(flag):
     os.system("chmod +x " + settings.SUBMITTER_FILE)
     esc_flag = re.sub("(\{|\})", r"\\\1", flag)
     print(esc_flag)
-    output = subprocess.check_output(settings.SUBMITTER_FILE + " \"" + esc_flag + "\"", shell=True)
+    output = subprocess.check_output(settings.SUBMITTER_FILE + " \"" + esc_flag + "\"", shell=True, stderr=subprocess.STDOUT)
     status = get_status(output.decode("utf-8"))
     return status
 

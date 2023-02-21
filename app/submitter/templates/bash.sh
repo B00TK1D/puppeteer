@@ -2,4 +2,4 @@
 
 FLAG=$1
 
-curl http://scoreboard.com/submit?flag=$FLAG
+curl -s http://scoreboard.com/submit?flag=$FLAG
