@@ -2,17 +2,19 @@
     ("/exploits", "Exploit Scripts"),
     ("/submitter", "Submitter"),
     ("/flagformat", "Flag Format"),
-    ("/teams", "Teams")
+    ("/teams", "Teams"),
+    ("/services", "Services"),
+    ("/targets", "Targets")
 ] -%}
 {% set active_page = active_page|default('Home') -%}
 
-{% macro input(name, id, type, value="") -%}
+{% macro input(name, id, type, value="", options="required") -%}
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">{{ name }}</span>
         </div>
         <input type="{{ type }}" class="form-control" placeholder="{{ name }}" aria-label="{{ name }}"
-               aria-describedby="basic-addon1" name="{{ id }}" id = {{ id }} value="{{ value }}" required>
+               aria-describedby="basic-addon1" name="{{ id }}" id = {{ id }} value="{{ value }}" {{ options }}>
     </div>
 {%- endmacro %}
 

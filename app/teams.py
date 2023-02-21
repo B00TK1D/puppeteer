@@ -11,6 +11,10 @@ def view_teams():
     teams = db.data["teams"]
     return flask.render_template("teams.html", teams = teams)
 
+def sort_teams():
+    teams = db.data["teams"]
+    db.data["teams"] = dict(sorted(teams.items()))
+
 
 # Backend functions
 def create_team():
@@ -28,6 +32,9 @@ def create_team():
     }
 
     db.data["teams"][id] = team
+
+    sort_teams()
+
     teams = db.data["teams"]
 
     print(teams)
@@ -36,13 +43,27 @@ def create_team():
 
 def update_team():
     id = int(flask.request.form.get("id"))
+    newid = int(flask.request.form.get("newid"))
     name = str(flask.request.form.get("name"))
     
+    if newid != id and newid in db.data["teams"]:
+        teams = db.data["teams"]
+        return flask.render_template("teams.html", teams = teams, messages = ["Team " + str(newid) + " already exists"])
+
     try:
-        db.data["teams"][id]["name"] = name
+        team = db.data["teams"][id]
+
+        team["id"] = newid
+        team["name"] = name
+
+        del db.data["teams"][id]
+        db.data["teams"][newid] = team
+
+        sort_teams()
         teams = db.data["teams"]
 
         return flask.render_template("teams.html", teams = teams, messages = ["Team " + str(id) + " updated"])
+
     except KeyError:
         teams = db.data["teams"]
         return flask.render_template("teams.html", teams = teams, messages = ["Team " + str(id) + " does not exist"])

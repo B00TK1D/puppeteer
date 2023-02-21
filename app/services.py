@@ -4,7 +4,9 @@ import db
 
 
 # Helper functions
-
+def sort_services():
+    services = db.data["services"]
+    db.data["services"] = dict(sorted(services.items()))
 
 # Frontend views
 def view_services():
@@ -14,10 +16,14 @@ def view_services():
 
 # Backend functions
 def create_service():
+    id = int(flask.request.form.get("id"))
     name = flask.request.form.get("name")
     notes = flask.request.form.get("notes")
 
-    id = next(iter(db.data["services"]), 0)
+    if id in db.data["services"]:
+        services = db.data["services"]
+        return flask.render_template("services.html", services = services, messages = ["Service " + str(id) + " already exists"])
+
     service = {
         "id": id,
         "name": name,
@@ -26,6 +32,9 @@ def create_service():
     }
 
     db.data["services"][id] = service
+
+    sort_services()
+
     services = db.data["services"]
 
     print(services)
@@ -34,18 +43,32 @@ def create_service():
 
 def update_service():
     id = int(flask.request.form.get("id"))
+    newid = int(flask.request.form.get("newid"))
     name = str(flask.request.form.get("name"))
     notes = str(flask.request.form.get("notes"))
     
+    if newid != id and newid in db.data["services"]:
+        services = db.data["services"]
+        return flask.render_template("services.html", services = services, messages = ["Service " + str(newid) + " already exists"])
+
     try:
-        db.data["services"][id]["name"] = name
-        db.data["services"][id]["notes"] = notes
+        service = db.data["services"][id]
+
+        service["id"] = newid
+        service["name"] = name
+
+        del db.data["services"][id]
+        db.data["services"][newid] = service
+
+        sort_services()
+
         services = db.data["services"]
 
-        return flask.render_template("services.html", services = services, messages = ["Service " + name + " updated"])
+        return flask.render_template("services.html", services = services, messages = ["Service " + str(id) + " updated"])
+
     except KeyError:
         services = db.data["services"]
-        return flask.render_template("services.html", services = services, messages = ["Service " + int(id) + " does not exist"])
+        return flask.render_template("services.html", services = services, messages = ["Service " + str(id) + " does not exist"])
 
 def delete_service():
     id = int(flask.request.args.get("id"))

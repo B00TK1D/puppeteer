@@ -1,0 +1,45 @@
+{
+    "exploits": {
+        "0": {
+            "id": 0,
+            "name": "curl",
+            "frequency": 60,
+            "path": "curl",
+            "flags_captured": 0,
+            "boxes_vulnerable": 0,
+            "log": {}
+        },
+        "1": {
+            "id": 1,
+            "name": "DNS Zone Transfer",
+            "frequency": 60,
+            "path": "DNS Zone Transfer",
+            "flags_captured": 0,
+            "boxes_vulnerable": 0,
+            "log": {}
+        }
+    },
+    "teams": {
+        "0": {
+            "id": 0,
+            "name": "local",
+            "flags_collected": 0
+        }
+    },
+    "services": {
+        "1": {
+            "id": 1,
+            "name": "host",
+            "notes": "",
+            "flags_collected": 0
+        }
+    },
+    "submissions": {},
+    "settings": {
+        "targetformat": "127.0.T.S",
+        "flagformat": "ncx{.*}",
+        "submitrate": 1000,
+        "correctregex": ".*success.*",
+        "incorrectregex": ".*fail.*"
+    }
+}

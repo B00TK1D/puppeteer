@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% set active_page = "Submitter Script" %}
 {% block content %}
+    <script>
+        window.history.replaceState({}, document.title, "/" + "flagformat");
+    </script>
     <form action="/api/flagformat/update" method="post">
         <script>
             function testFlagFormat() {
@@ -51,8 +54,5 @@
         <br/>
         <a class="btn btn-secondary" href="/">Back</a>
         <button type="submit" class="btn btn-primary">Save</button>
-        <script>
-            checkValidRegex();
-        </script>
     </form>
 {% endblock %}

@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% set active_page = "Teams" %}
+{% set active_page = "Services" %}
 {% block content %}
     <script>
-        window.history.replaceState({}, document.title, "/" + "teams");
+        window.history.replaceState({}, document.title, "/" + "services");
     </script>
     <table class="table table-hover table-bordered">
         <thead class="thead-light">
@@ -14,17 +14,18 @@
         </tr>
         </thead>
         <tbody>
-        {% for team in teams.values() %}
+        {% for service in services.values() %}
             <tr>
-                <form action="/api/teams/update" method="post">
-                    <input type="hidden" name="id" value={{ team.id }}>
-                    <th scope="row">{{ team.flags_collected }}</th>
-                    <td><input class="form-control" type="number" name="newid" value="{{ team.id }}" required></td>
-                    <td><input class="form-control" type="text" name="name" value="{{ team.name }}" required></td>
+                <form action="/api/services/update" method="post">
+                    <input type="hidden" name="id" value={{ service.id }}>
+                    <th scope="row">{{ service.flags_collected }}</th>
+                    <td><input class="form-control" type="number" name="newid" value="{{ service.id }}" required></td>
+                    <td><input class="form-control" type="text" name="name" value="{{ service.name }}" required></td>
+                    <td><input class="form-control" type="text" name="notes" value="{{ service.notes }}"></td>
                     <td>
                         <div class="btn-group" role="group">
                             <input class="btn btn-primary" type="submit" value="Update">
-                            <a class="btn btn-danger" href="/api/teams/delete?id={{ team.id }}">Delete</a>
+                            <a class="btn btn-danger" href="/api/services/delete?id={{ service.id }}">Delete</a>
                         </div>
                     </td>
                 </form>
@@ -33,8 +34,8 @@
         </tbody>
     </table>
     <br/>
-    <h3>Add New Team</h3>
-    <form action="/api/teams/create" method="post">
+    <h3>Add New Service</h3>
+    <form action="/api/services/create" method="post">
         <table class="table table-hover table-bordered">
             <tbody>
                 <tr>
@@ -43,6 +44,9 @@
                     </td>
                     <td>
                         {{ input("Name", "name", "text") }}
+                    </td>
+                    <td>
+                        {{ input("Notes", "notes", "text", "", "") }}
                     </td>
                     <td>
                         <input class="btn btn-primary" type="submit" value="Add">

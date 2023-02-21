@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% set active_page = "Targets" %}
+{% block content %}
+    <form action="/api/targets/update" method="post">
+        <p>Target Format ('T' will be replaced with team ID and 'S' will be replaced with service ID)</p>
+        {{ input("Format", "format", "text", format) }}
+        <a class="btn btn-secondary" href="/targets">Cancel</a>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    <br/>
+    <h1>Targets</h1>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">IP</th>
+            <th scope="col">Team</th>
+            <th scope="col">Service</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for target in targets.values() %}
+            <tr>
+                <td scope="row">{{ target.ip }}</td>
+                <th scope="row">{{ target.team }}</th>
+                <th scope="row">{{ target.service }}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
