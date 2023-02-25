@@ -54,6 +54,7 @@ def handle_data(exploit_id, team_id, service_id, data):
     global total_found
     # Handle output from exploits
     flags = flagformat.extract_flags(data)
+    total_new = 0
     for flag in flags:
         if flag not in flagdb:
             flagdb[flag] = {
@@ -68,10 +69,11 @@ def handle_data(exploit_id, team_id, service_id, data):
             db.data["services"][service_id]["flags_captured"] += 1
             db.data["exploits"][exploit_id]["flags_captured"] += 1
             total_found += 1
-    return len(flags)
+            total_new += 1
+    return len(flags),total_new
 
 
-def submit():
+def submit_loop():
     global status_msg, total_submitted
     # Submit flags to the submitter
     last_anysuccess = False
@@ -172,6 +174,5 @@ def update_submitter():
         )
 
 
-
 # Thread functions
-submit_thread = threading.Thread(target=submit)
+submit_thread = threading.Thread(target=submit_loop)

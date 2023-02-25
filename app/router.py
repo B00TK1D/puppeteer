@@ -19,7 +19,7 @@ Bootstrap4(app)
 def run():
     global app
     # Run the app
-    app.run(port=8088)
+    app.run(port=8088, host="0.0.0.0")
 
 
 
@@ -119,7 +119,7 @@ def route_delete_exploit():
 
 @app.route("/api/exploits/run", methods=["GET"])
 def route_run_exploit():
-    return exploits.run_exploit()
+    return exploits.trigger_run_exploit()
 
 
 ### Submitter API ###

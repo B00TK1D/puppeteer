@@ -50,6 +50,8 @@
         Status: {{ status }}
     </div>
     <br/>
+    <h4>Log</h4>
+    <a class="btn btn-secondary" href="/submitter/log">View Log</a>
     <form action="/api/submitter/update" method="post">
         {{ input("Rate Limiting (ms)", "rate", "number", rate) }}
         <br/>
@@ -93,8 +95,6 @@
         </div>
         <a class="btn btn-secondary" href="/">Back</a>
         <button type="submit" class="btn btn-primary">Save</button>
-        <h4>Log</h4>
-        <a class="btn btn-secondary" href="/submitter/log">View Log</a>
     </form> 
     <script>
         checkValidRegexCorrect();

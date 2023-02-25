@@ -43,11 +43,11 @@ def load():
         pass
 
 # Set up a backup thread that saves the database every 5 seconds
-def backup():
+def backup_loop():
     while True:
         save()
         time.sleep(settings.BACKUP_FREQUENCY)
 
 
 # Backup thread
-backup_thread = threading.Thread(target=backup)
+backup_thread = threading.Thread(target=backup_loop)

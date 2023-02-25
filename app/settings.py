@@ -13,6 +13,8 @@ EXPLOITS_TEMPLATES_DIR = os.path.join(EXPLOITS_DIR, "templates")
 EXPLOITS_ARCHIVE_DIR = os.path.join(EXPLOITS_DIR, "archive")
 
 EXPLOIT_DEFAULT_FREQUENCY = 60
+EXPLOIT_TICK_TIME = 1
+EXPLOIT_TIMEOUT = 10
 
 
 # Submitter settings

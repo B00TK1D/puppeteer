@@ -1,44 +1,34 @@
 {
     "exploits": {
-        "1": {
-            "id": "2",
-            "name": "curl",
-            "frequency": "60",
-            "path": "curl",
-            "flags_captured": 0,
-            "services_vulnerable": 0,
-            "service_id": "1",
-            "log": {},
-            "service": "host"
-        },
         "0": {
             "id": "0",
             "name": "python",
-            "frequency": "10",
+            "frequency": 10,
             "path": "python",
-            "flags_captured": 1,
-            "services_vulnerable": 0,
+            "flags_captured": 0,
+            "services_vulnerable": 1,
             "service_id": "1",
             "log": {},
             "service": "host"
         },
-        "2": {
-            "id": "2",
-            "name": "DNS Zone Transfer",
-            "frequency": 60,
-            "path": "DNS Zone Transfer",
-            "flags_captured": 0,
-            "services_vulnerable": 0,
-            "service_id": "",
+        "1": {
+            "id": "1",
+            "name": "curl",
+            "frequency": 10,
+            "path": "curl",
+            "flags_captured": 7,
+            "services_vulnerable": 1,
+            "service_id": "1",
             "log": {},
-            "service": ""
+            "service": "host"
         }
     },
+    "flags": {},
     "teams": {
         "0": {
             "id": "0",
             "name": "local",
-            "flags_captured": 3
+            "flags_captured": 15
         }
     },
     "services": {
@@ -46,7 +36,7 @@
             "id": "1",
             "name": "host",
             "notes": "",
-            "flags_captured": 3
+            "flags_captured": 15
         }
     },
     "submissions": {},

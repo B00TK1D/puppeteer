@@ -15,7 +15,7 @@ def log(message, type="info"):
         f.write("[{}]: {} - {}\n".format(timestamp, type, message))
 
 
-def log_exploit(id, timestamp, team, service, target, status, info):
+def log_exploit(id, timestamp, team, service, target, status, info, total, new):
     global exploit_log
     if id not in exploit_log:
         exploit_log[id] = {}
@@ -26,7 +26,9 @@ def log_exploit(id, timestamp, team, service, target, status, info):
         "service": service,
         "target": target,
         "status": status,
-        "info": info
+        "info": info,
+        "total": total,
+        "new": new
     }
     log("Exploit {} status {} for {} on {} ({})".format(id, status, team, service, target), "exploit")
 
