@@ -1,11 +1,12 @@
 import flask
 from flask_bootstrap import Bootstrap4
 
+import home
 import teams
+import agents
 import targets
 import exploits
 import services
-import home
 import submitter
 import flagformat
 
@@ -85,6 +86,11 @@ def route_services():
 def route_targets():
     return targets.view_targets()
 
+### Agent Routes ###
+@app.route("/agents", methods=["GET"])
+def route_agents():
+    return agents.view_agents()
+
 ### Dashboard Routes ###
 @app.route("/", methods=["GET"])
 def route_home():
@@ -163,3 +169,16 @@ def route_delete_service():
 @app.route("/api/targets/update", methods=["POST"])
 def route_update_target():
     return targets.update_targets()
+
+### Agent API ###
+@app.route("/api/agents/create", methods=["POST"])
+def route_create_agent():
+    return agents.create_agent()
+
+@app.route("/api/agents/update", methods=["POST"])
+def route_update_agent():
+    return agents.update_agent()
+
+@app.route("/api/agents/delete", methods=["GET"])
+def route_delete_agent():
+    return agents.delete_agent()

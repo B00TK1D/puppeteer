@@ -16,7 +16,7 @@
             "name": "curl",
             "frequency": 10,
             "path": "curl",
-            "flags_captured": 7,
+            "flags_captured": 28,
             "services_vulnerable": 1,
             "service_id": "1",
             "log": {},
@@ -28,7 +28,7 @@
         "0": {
             "id": "0",
             "name": "local",
-            "flags_captured": 15
+            "flags_captured": 36
         }
     },
     "services": {
@@ -36,10 +36,21 @@
             "id": "1",
             "name": "host",
             "notes": "",
-            "flags_captured": 15
+            "flags_captured": 36
         }
     },
     "submissions": {},
+    "agents": {
+        "10.211.55.10": {
+            "ip": "10.211.55.10",
+            "port": 22,
+            "user": "ctf",
+            "password": "ctf123js",
+            "hostname": "ubuntu-linux-20-04-desktop",
+            "os": "Linux",
+            "status": "Initialized"
+        }
+    },
     "settings": {
         "targetformat": "127.0.T.S",
         "flagformat": "flag\\${.*}",

@@ -1,9 +1,7 @@
 import os
 import re
-import html
 import time
 import flask
-import shlex
 import threading
 import subprocess
 
@@ -20,6 +18,7 @@ total_found = 0
 total_submitted = 0
 
 status_msg = "Not yet run"
+status_code = 0
 
 # Helper functions
 def get_submitter_templates():
@@ -44,11 +43,14 @@ def get_status(output):
         return "failure: " + output
 
 def submit_flag(flag):
-    os.system("chmod +x " + settings.SUBMITTER_FILE)
-    esc_flag = re.sub("(\{|\})", r"\\\1", flag)
-    output = subprocess.check_output(settings.SUBMITTER_FILE + " \"" + esc_flag + "\"", shell=True, stderr=subprocess.STDOUT)
-    status = get_status(output.decode("utf-8"))
-    return status
+    try:
+        os.system("chmod +x " + settings.SUBMITTER_FILE)
+        esc_flag = re.sub("(\{|\})", r"\\\1", flag)
+        output = subprocess.check_output(settings.SUBMITTER_FILE + " \"" + esc_flag + "\"", shell=True, stderr=subprocess.STDOUT)
+        status = get_status(output.decode("utf-8"))
+        return status
+    except Exception as e:
+        return "Error: " + str(e)
 
 def handle_data(exploit_id, team_id, service_id, data):
     global total_found
@@ -73,8 +75,61 @@ def handle_data(exploit_id, team_id, service_id, data):
     return len(flags),total_new
 
 
+
+# Frontend views
+def view_submitter():
+    global status_msg, status_code
+    template = flask.request.args.get("template")
+    code = ""
+    rate = db.data["settings"]["submitrate"]
+    correctregex = db.data["settings"]["correctregex"]
+    incorrectregex = db.data["settings"]["incorrectregex"]
+    if template:
+        code = get_submitter_template_contents(template)
+    else:
+        code = get_submitter_contents()
+    templates = get_submitter_templates()
+    return flask.render_template("submitter/index.html",
+                templates = templates,
+                code = code,
+                rate = rate,
+                correctregex = correctregex,
+                incorrectregex = incorrectregex,
+                status = status_msg,
+                status_code = status_code
+            )
+
+def view_submit_log():
+    return flask.render_template("submitter/log.html",
+            log = log.get_submit_log()
+        )
+
+
+# Backend functions
+def update_submitter():
+    code = flask.request.form.get("code")
+    db.data["settings"]["submitrate"] = int(flask.request.form.get("rate"))
+    db.data["settings"]["correctregex"] = flask.request.form.get("correctregex")
+    db.data["settings"]["incorrectregex"] = flask.request.form.get("incorrectregex")
+
+    with open(settings.SUBMITTER_FILE, "w", newline='\n') as f:
+        code = code.replace('\r', '')
+        f.write(code)
+
+    return flask.render_template("submitter/index.html",
+            templates = get_submitter_templates(),
+            code = code,
+            rate = db.data["settings"]["submitrate"],
+            correctregex = db.data["settings"]["correctregex"],
+            incorrectregex = db.data["settings"]["incorrectregex"],
+            status = status_msg
+        )
+
+
+# Thread functions
+
 def submit_loop():
-    global status_msg, total_submitted
+    global status_msg, status_code, total_submitted
     # Submit flags to the submitter
     last_anysuccess = False
     while True:
@@ -110,69 +165,30 @@ def submit_loop():
                 else:
                     holding += 1
                 if not last_anysuccess and not anysuccess and holding > 0:
-                    status_msg = "ERROR: All flag submissions failing, check your submitter (holding " + str(holding) + " flags until it is fixed)"
+                    status_msg = "Error: All flag submissions failing, check your submitter (holding " + str(holding) + " flags until it is fixed)"
+                    status_code = 3
                 elif not last_anysuccess and not anysuccess:
                     status_msg = "No flags to submit"
+                    status_code = 1
                 else:
                     status_msg = "Last run: " + time.strftime("%H:%M:%S") + " - " + str(submitted) + " flags submitted (" + str(invalid) + " attempted but invalid)"
+                    if (invalid > 0):
+                        status_code = 1
+                    else:
+                        status_code = 0
         last_anysuccess = anysuccess
         if not anysuccess and holding > 0:
-            status_msg = "ERROR: All flag submissions failing, check your submitter (holding " + str(holding) + " flags until it is fixed)"
+            status_msg = "Error: All flag submissions failing, check your submitter (holding " + str(holding) + " flags until it is fixed)"
+            status_code = 3
         elif not anysuccess:
             status_msg = "No flags to submit"
+            status_code = 1
         else:
             status_msg = "Last run: " + time.strftime("%H:%M:%S") + " - " + str(submitted) + " flags submitted (" + str(invalid) + " attempted but invalid)"
+            if (invalid > 0):
+                status_code = 1
+            else:
+                status_code = 0
     
 
-
-# Frontend views
-def view_submitter():
-    global messages
-    template = flask.request.args.get("template")
-    code = ""
-    rate = db.data["settings"]["submitrate"]
-    correctregex = db.data["settings"]["correctregex"]
-    incorrectregex = db.data["settings"]["incorrectregex"]
-    if template:
-        code = get_submitter_template_contents(template)
-    else:
-        code = get_submitter_contents()
-    templates = get_submitter_templates()
-    return flask.render_template("submitter/index.html",
-                templates = templates,
-                code = code,
-                rate = rate,
-                correctregex = correctregex,
-                incorrectregex = incorrectregex,
-                status = status_msg
-            )
-
-def view_submit_log():
-    return flask.render_template("submitter/log.html",
-            log = log.get_submit_log()
-        )
-
-
-# Backend functions
-def update_submitter():
-    code = flask.request.form.get("code")
-    db.data["settings"]["submitrate"] = int(flask.request.form.get("rate"))
-    db.data["settings"]["correctregex"] = flask.request.form.get("correctregex")
-    db.data["settings"]["incorrectregex"] = flask.request.form.get("incorrectregex")
-
-    with open(settings.SUBMITTER_FILE, "w", newline='\n') as f:
-        code = code.replace('\r', '')
-        f.write(code)
-
-    return flask.render_template("submitter/index.html",
-            templates = get_submitter_templates(),
-            code = code,
-            rate = db.data["settings"]["submitrate"],
-            correctregex = db.data["settings"]["correctregex"],
-            incorrectregex = db.data["settings"]["incorrectregex"],
-            status = status_msg
-        )
-
-
-# Thread functions
 submit_thread = threading.Thread(target=submit_loop)

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% set active_page = "Submitter Parameters" %}
+{% set refresh_interval = 5 %}
 {% block content %}
     <script>
         window.history.replaceState({}, document.title, "/" + "submitter");
@@ -46,12 +47,20 @@
             }
         }
     </script>
-    <div class="alert alert-info" role="alert">
-        Status: {{ status }}
-    </div>
+    {% if status_code == 0 %}
+        <div class="alert alert-success" role="alert">{{ status }}</div>
+    {% elif status_code == 1 %}
+        <div class="alert alert-info" role="alert">{{ status }}</div>
+    {% elif status_code == 2 %}
+        <div class="alert alert-warning" role="alert">{{ status }}</div>
+    {% elif status_code == 3 %}
+        <div class="alert alert-danger" role="alert">{{ status }}</div>
+    {% endif %}
     <br/>
     <h4>Log</h4>
     <a class="btn btn-secondary" href="/submitter/log">View Log</a>
+    <br/>
+    <br/>
     <form action="/api/submitter/update" method="post">
         {{ input("Rate Limiting (ms)", "rate", "number", rate) }}
         <br/>

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% set active_page = "Agents" %}
+{% block content %}
+    <script>
+        window.history.replaceState({}, document.title, "/" + "agents");
+    </script>
+    <h3>Agents</h3>
+    <p>Agents run on blue machines - owned and defended by our own team.  Adding agents enables increased defense and exploit repurposing capabilities.</p>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">IP</th>
+            <th scope="col">SSH Port</th>
+            <th scope="col">Hostname</th>
+            <th scope="col">User</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for agent in agents.values() %}
+            <tr>
+                <th scope="row">{{ agent.ip }}</th>
+                <th scope="row">{{ agent.port }}</th>
+                <th scope="row">{{ agent.hostname }}</th>
+                <th scope="row">{{ agent.user }}</th>
+                <th scope="row">{{ agent.status }}</th>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-danger" href="/api/agents/delete?ip={{ agent.ip }}">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br/>
+    <h3>Add New Agent</h3>
+    <form action="/api/agents/create" method="post">
+        <table class="table table-hover table-bordered">
+            <tbody>
+                <tr>
+                    <td>
+                        {{ input("IP", "ip", "text") }}
+                    </td>
+                    <td>
+                        {{ input("SSH Port", "port", "number") }}
+                    </td>
+                    <td>
+                        {{ input("User", "user", "text") }}
+                    </td>
+                    <td>
+                        {{ input("Password", "password", "password") }}
+                    </td>
+                    <td>
+                        <input class="btn btn-primary" type="submit" value="Add">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+{% endblock %}
