@@ -4,3 +4,5 @@ bootstrap-flask
 flask-sqlalchemy
 flask-codemirror
 flask-wtf
+paramiko
+scapy

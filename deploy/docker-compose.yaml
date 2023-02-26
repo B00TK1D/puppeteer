@@ -1,0 +1,24 @@
+version: '3.5'
+
+services:
+
+  app:
+    build:
+      context: ./docker
+      dockerfile: app.Dockerfile
+    container_name: puppeteer.app
+    ports:
+      - 10801:8088
+    volumes:
+        - ../app/:/app
+    environment:
+      - ADMIN_USER=${ADMIN_USER}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    restart: always
+
+  proxy:
+    image: "ubuntu/squid"
+    container_name: puppeteer.proxy
+    ports:
+      - 3128:3128
+    restart: always

@@ -1,9 +1,14 @@
 FROM python:3.8-slim-buster
 
-# Install packages
-COPY apt_packages.txt /tmp
-RUN apk add --no-cache $(cat /tmp/apt_packages.txt) \
-    && rm /tmp/apt_packages.txt
+# Install dependencies
+RUN apt-get update && apt-get install -y gzip tshark
+
+# Install mergecap
+RUN apt-get install -y wireshark-common && \
+    apt-get install -y tshark && \
+    apt-get install -y wireshark && \
+    apt-get install -y libcap2-bin
+
 
 # Install Python modules
 COPY requirements.txt /tmp
@@ -17,10 +22,10 @@ RUN adduser --disabled-password --gecos '' puppeteer && \
     chown -R puppeteer /usr/local/lib/python3.8/site-packages
 
 # Switch to non-root user
-USER puppeteer
+#USER puppeteer
 
-# Copy app
-COPY --chown=puppeteer:puppeteer . /app
+# Own app directory
+#RUN chown -R puppeteer /app
 WORKDIR /app
 
 # Run app

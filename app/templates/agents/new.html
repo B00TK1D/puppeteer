@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% set active_page = "New Agent" %}
+{% block content %}
+    <form action="/api/agents/create" method="post">
+        <table class="table table-hover table-bordered">
+            <tbody>
+                <tr>
+                    <td>
+                        {{ input("IP", "ip", "text") }}
+                    </td>
+                    <td>
+                        {{ input("SSH Port", "port", "number") }}
+                    </td>
+                    <td>
+                        {{ input("User", "user", "text") }}
+                    </td>
+                    <td>
+                        {{ input("Password", "password", "password") }}
+                    </td>
+                    <td>
+                        <input class="btn btn-primary" type="submit" value="Add">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+{% endblock %}

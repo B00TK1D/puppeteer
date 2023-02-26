@@ -5,6 +5,7 @@ import home
 import teams
 import agents
 import targets
+import traffic
 import exploits
 import services
 import submitter
@@ -20,9 +21,7 @@ Bootstrap4(app)
 def run():
     global app
     # Run the app
-    app.run(port=8088, host="0.0.0.0")
-
-
+    app.run(port=8088, host="0.0.0.0", debug=True, use_evalex=False)
 
 
 
@@ -90,6 +89,14 @@ def route_targets():
 @app.route("/agents", methods=["GET"])
 def route_agents():
     return agents.view_agents()
+
+@app.route("/agents/init", methods=["GET"])
+def route_init_agent():
+    return agents.view_agent_init()
+
+@app.route("/agents/new", methods=["GET"])
+def route_new_agent():
+    return agents.view_new_agent()
 
 ### Dashboard Routes ###
 @app.route("/", methods=["GET"])
@@ -182,3 +189,21 @@ def route_update_agent():
 @app.route("/api/agents/delete", methods=["GET"])
 def route_delete_agent():
     return agents.delete_agent()
+
+@app.route("/api/agents/init/update", methods=["POST"])
+def route_update_agent_init():
+    return agents.update_agent_init()
+
+### Traffic API ###
+@app.route("/api/traffic/start", methods=["GET"])
+def route_start_traffic():
+    return traffic.start_capture()
+
+@app.route("/api/traffic/stop", methods=["GET"])
+def route_stop_traffic():
+    return traffic.stop_capture()
+
+### Dashboard API ###
+@app.route("/api/counters/reset", methods=["GET"])
+def route_reset_counters():
+    return home.reset_counters()

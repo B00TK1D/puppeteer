@@ -2,25 +2,25 @@
     "exploits": {
         "0": {
             "id": "0",
-            "name": "python",
+            "name": "curl",
             "frequency": 10,
-            "path": "python",
-            "flags_captured": 0,
-            "services_vulnerable": 1,
+            "path": "curl",
+            "flags_captured": 17,
+            "services_vulnerable": 0,
             "service_id": "1",
             "log": {},
             "service": "host"
         },
         "1": {
             "id": "1",
-            "name": "curl",
-            "frequency": 10,
-            "path": "curl",
-            "flags_captured": 28,
-            "services_vulnerable": 1,
-            "service_id": "1",
+            "name": "python",
+            "frequency": 60,
+            "path": "python",
+            "flags_captured": 0,
+            "services_vulnerable": 0,
+            "service_id": "",
             "log": {},
-            "service": "host"
+            "service": ""
         }
     },
     "flags": {},
@@ -28,7 +28,7 @@
         "0": {
             "id": "0",
             "name": "local",
-            "flags_captured": 36
+            "flags_captured": 17
         }
     },
     "services": {
@@ -36,7 +36,7 @@
             "id": "1",
             "name": "host",
             "notes": "",
-            "flags_captured": 36
+            "flags_captured": 17
         }
     },
     "submissions": {},
@@ -48,7 +48,9 @@
             "password": "ctf123js",
             "hostname": "ubuntu-linux-20-04-desktop",
             "os": "Linux",
-            "status": "Initialized"
+            "status": "Idle",
+            "admin": 1,
+            "capture": 0
         }
     },
     "settings": {

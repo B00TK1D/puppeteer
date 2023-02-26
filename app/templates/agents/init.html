@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% set active_page = "Agent Init Script" %}
+{% block content %}
+    <form action="/api/agents/init/update" method="post">
+        <div class="form-group">
+            <h1>Initialization Script</h1>
+            <p>This script will be run on each agent when it is first added</p>
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <th>
+                        <h3>Unix Script</h3>
+                    </th>
+                    <th>
+                        <h3>Windows Script</h3>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <code>
+                                <textarea class="form-control" id="code" name="unix" rows="20">{{ unix }}</textarea>
+                            </code>
+                        </td>
+                        <td>
+                            <code>
+                                <textarea class="form-control" id="code" name="windows" rows="20">{{ windows }}</textarea>
+                            </code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a class="btn btn-secondary" href="/agents">Back</a>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+{% endblock %}

@@ -1,42 +1,177 @@
+import os
 import re
 import flask
 import paramiko
+import traceback
 import threading
 
 import db
+import log
+import utils
+import settings
+
+
+package_managers = {
+    "Linux": {
+        "install": "apt-get install -y",
+        "update": "apt-get update -y"
+    },
+    "CentOS": {
+        "install": "yum install -y",
+        "update": "yum update -y"
+    }
+}
 
 # Helper functions
+def connect(agent):
+    # Connect to agent
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(agent["ip"], agent["port"], agent["user"], agent["password"])
+    return ssh
+
+def run_cmd(agent, cmd, ssh=None, sudo=False, nohup=False):
+    new = False
+    if not ssh:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(agent["ip"], agent["port"], agent["user"], agent["password"])
+        new = True
+    if nohup:
+        channel = ssh.get_transport().open_session()
+        ssh = channel
+    if sudo and agent["admin"]:
+        stdin, stdout, stderr = ssh.exec_command("sudo -S " + cmd)
+        stdin.write(agent["password"] + "\n")
+        stdin.flush()
+    else:
+        stdin, stdout, stderr = ssh.exec_command(cmd)
+    err = stderr.read().decode("utf-8").strip()
+    if len(err) > 0:
+        log.log("Error while executing " + cmd + " on " + agent["ip"] + ": " + err)
+    if new:
+        ssh.close()
+    return stdout.read().decode("utf-8").strip()
+
+def install_requirements(agent, requirements, ssh=None):
+    if agent["os"] not in package_managers:
+        return -1
+    if agent["admin"] == 0:
+        return -1
+    package_manager = package_managers[agent["os"]]
+    new = False
+    if not ssh:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(agent["ip"], agent["port"], agent["user"], agent["password"])
+        new = True
+    # Check if requirements are installed
+    unmet = []
+    for requirement in requirements:
+        if run_cmd(agent, "which " + requirement, ssh) == "":
+            unmet.append(requirement)
+    if unmet:
+        # Get proxy IP
+        proxy_ip = run_cmd(agent, "echo $SSH_CLIENT", ssh).split(" ")[0]
+        # Set proxy
+        run_cmd(agent, "set http_proxy=http://" + proxy_ip + ":3128", ssh)
+        run_cmd(agent, "set https_proxy=http://" + proxy_ip + ":3128", ssh)
+        # Update and install requirements
+        run_cmd(agent, package_manager["update"], ssh, sudo=True)
+        for u in unmet:
+            run_cmd(agent, package_manager["install"] + " " + u, ssh, sudo=True)
+        run_cmd(agent, "unset http_proxy", ssh)
+        run_cmd(agent, "unset https_proxy", ssh)
+    if new:
+        ssh.close()
+
+def upload(agent, local_path, remote_path, ssh=None):
+    new = False
+    if not ssh:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(agent["ip"], agent["port"], agent["user"], agent["password"])
+        new = True
+    sftp = ssh.open_sftp()
+    sftp.put(local_path, remote_path)
+    sftp.close()
+    if new:
+        ssh.close()
+
+def download(agent, remote_path, local_path, ssh=None):
+    new = False
+    if not ssh:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(agent["ip"], agent["port"], agent["user"], agent["password"])
+        new = True
+    sftp = ssh.open_sftp()
+    sftp.get(remote_path, local_path)
+    sftp.close()
+    if new:
+        ssh.close()
+
 def init_agent(agent):
     print("Initializing agent on " + agent["ip"] + "...")
     # SSH into agent and run init script
     # Launch SSH connection
     try:
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh.connect(agent["ip"], agent["port"], agent["user"], agent["password"])
-        # Run init script
-        stdin, stdout, stderr = ssh.exec_command("hostname")
-        # Get hostname
-        agent["hostname"] = stdout.read().decode("utf-8").strip()
+        ssh = connect(agent)
+        agent["hostname"] = run_cmd(agent, "hostname", ssh)
         # Get OS
-        stdin, stdout, stderr = ssh.exec_command("uname")
-        if (len(stderr.read().decode("utf-8").strip()) > 0):
-            agent["os"] = "Unknown"
+        os_name = run_cmd(agent, "uname", ssh)
+        if (len(os_name) == 0):
+            agent["os"] = "Windows"
         else:
-            agent["os"] = stdout.read().decode("utf-8").strip()
-        # Close SSH connection
-        ssh.close()
+            agent["os"] = os_name
+        # Run init script
+        if agent["os"] == "Windows":
+            # SCP init script to agent
+            sftp = ssh.open_sftp()
+            sftp.put(os.path.join(settings.AGENTS_DIR, "init", "windows.ps1"), "C:\\Users\\" + agent["user"] + "\\AppData\\Local\\Temp\\init.ps1")
+            sftp.close()
+            # Run init script
+            run_cmd(agent, "powershell -ExecutionPolicy Bypass -File C:\\Users\\" + agent["user"] + "\\AppData\\Local\\Temp\\init.ps1 && del C:\\Users\\" + agent["user"] + "\\AppData\\Local\\Temp\\init.ps1", ssh)
+            # Close SSH connection
+            ssh.close()
+        else:
+            # SCP init script to agent
+            sftp = ssh.open_sftp()
+            sftp.put(os.path.join(settings.AGENTS_DIR, "init", "unix.sh"), "/tmp/init.sh")
+            sftp.close()
+            # Check for sudo access
+            groups = run_cmd(agent, "groups", ssh)
+            if "sudo" in groups:
+                db.data["agents"][agent["ip"]]["admin"] = 1
+                # Run init script with sudo
+                run_cmd(agent, "chmod +x /tmp/init.sh", ssh)
+                run_cmd(agent, "/tmp/init.sh && rm /tmp/init.sh", ssh, sudo=True)
+            else:
+                db.data["agents"][agent["ip"]]["admin"] = 0
+                run_cmd(agent, "chmod +x /tmp/init.sh && sudo /tmp/init.sh && rm /tmp/init.sh", ssh)
+            # Close SSH connection
+            ssh.close()
         db.data["agents"][agent["ip"]]["status"] = "Initialized"
-    except:
-        db.data["agents"][agent["ip"]]["status"] = "Failed to initialize"
+    except Exception as e:
+        db.data["agents"][agent["ip"]]["status"] = "Failed to initialize: " + traceback.format_exc()
 
 
 
 # Frontend views
 def view_agents():
+    messages = [flask.request.args.get("message")]
+    if messages[0] == None:
+        messages = []
     agents = db.data["agents"]
-    return flask.render_template("agents/index.html", agents = agents)
+    return flask.render_template("agents/index.html", agents = agents, messages = messages)
 
+def view_agent_init():
+    unix = utils.read_file_contents(os.path.join(settings.AGENTS_DIR, "init", "unix.sh"))
+    windows = utils.read_file_contents(os.path.join(settings.AGENTS_DIR, "init", "windows.ps1"))
+    return flask.render_template("agents/init.html", unix = unix, windows = windows)
+
+def view_new_agent():
+    return flask.render_template("agents/new.html")
 
 # Backend functions
 def create_agent():
@@ -67,7 +202,9 @@ def create_agent():
         "password": password,
         "hostname": "",
         "os": "",
-        "status": "Pending initialization..."
+        "status": "Pending initialization...",
+        "admin": 0,
+        "capture": 0
     }
 
     db.data["agents"][ip] = agent
@@ -79,8 +216,7 @@ def create_agent():
 
     agents = db.data["agents"]
 
-    return flask.render_template("agents/index.html", agents = agents, messages = ["Agent on " + str(ip) + " added"])
-
+    return flask.redirect("/agents?message=" + "Agent on " + str(ip) + " added")
 
 def update_agent():
     ip = flask.request.form.get("ip")
@@ -108,9 +244,7 @@ def update_agent():
 
     agents = db.data["agents"]
 
-    return flask.render_template("agents/index.html", agents = agents, messages = ["Agent on " + str(ip) + " updated"])
-
-
+    return flask.redirect("/agents?message=" + "Agent on " + str(ip) + " updated")
 
 def delete_agent():
     ip = flask.request.args.get("ip")
@@ -122,8 +256,16 @@ def delete_agent():
 
     agents = db.data["agents"]
 
-    return flask.render_template("agents/index.html", agents = agents, messages = ["Agent on " + str(ip) + " deleted"])
+    return flask.redirect("/agents?message=" + "Agent on " + str(ip) + " deleted")
 
+def update_agent_init():
+    unix = flask.request.form.get("unix")
+    windows = flask.request.form.get("windows")
+    utils.write_file_contents(os.path.join(settings.AGENTS_DIR, "init", "unix.sh"), unix)
+    utils.write_file_contents(os.path.join(settings.AGENTS_DIR, "init", "windows.ps1"), windows)
+    
+
+    return flask.render_template("agents/init.html", unix = unix, windows = windows, messages = ["Agent init scripts saved"])
 
 
 # Thread functions
