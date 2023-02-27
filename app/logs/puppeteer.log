@@ -22728,3 +22728,7 @@ FileNotFoundError: [Errno 2] No such file
 [2023-02-27 22:50:16]: info - Catching flags from /app/agents/traffic/10.211.55.10.pcap
 [2023-02-27 22:50:24]: exploit - Exploit 0 status Success - captured 1 repeat flags, 0 new flags for para on http (10.211.55.10)
 [2023-02-27 22:50:27]: info - Catching flags from /app/agents/traffic/10.211.55.10.pcap
+[2023-02-27 23:05:23]: exploit - Exploit 0 status Success - captured 0 repeat flags, 1 new flags for para on http (10.211.55.10)
+[2023-02-27 23:05:23]: exploit - Exploit 0 status Success - captured 0 repeat flags, 1 new flags for para on http (10.211.55.10)
+[2023-02-27 23:05:24]: submit - Submitted flag{testing_flag_1} for 55 on 10 (success)
+[2023-02-27 23:05:25]: submit - Submitted flag{testing_flag_1} for 55 on 10 (success)

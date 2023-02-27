@@ -5,7 +5,7 @@
             "name": "catcher-http-1677526139.py",
             "frequency": 10,
             "path": "catcher-http-1677526139.py",
-            "flags_captured": 2,
+            "flags_captured": 3,
             "services_vulnerable": 1,
             "service_id": "10",
             "log": {},
@@ -39,7 +39,7 @@
         "55": {
             "id": "55",
             "name": "para",
-            "flags_captured": 24
+            "flags_captured": 25
         }
     },
     "services": {
@@ -47,7 +47,7 @@
             "id": "10",
             "name": "http",
             "notes": "",
-            "flags_captured": 24
+            "flags_captured": 25
         }
     },
     "submissions": {},
@@ -70,7 +70,5 @@
         "submitrate": 1000,
         "correctregex": ".*success.*",
         "incorrectregex": ".*fail.*"
-    }
-}il.*"
     }
 }
