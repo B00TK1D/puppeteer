@@ -8,6 +8,18 @@ def sort_services():
     services = db.data["services"]
     db.data["services"] = dict(sorted(services.items()))
 
+def service_from_ip(ip):
+    services = db.data["services"]
+    target_format = db.data["settings"]["targetformat"]
+    for i in range(255):
+        team = target_format.replace("T", str(i))
+        for service in services.values():
+            test = team.replace("S", service["id"])
+            if test == ip:
+                return service["id"]
+    return None
+
+
 # Frontend views
 def view_services():
     services = db.data["services"]

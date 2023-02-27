@@ -9,6 +9,7 @@ import db
 import log
 import utils
 import agents
+import catcher
 import settings
 
 # Helper functions
@@ -32,7 +33,7 @@ def start_traffic_collection(agent):
 
             # Start traffic collection
             agents.run_cmd(agent, "chmod +x /tmp/start-traffic.sh", ssh)
-            agents.run_cmd(agent, "/tmp/start-traffic.sh " + proxy_ip + " " + agent["port"], ssh, sudo=True)
+            agents.run_cmd(agent, "/tmp/start-traffic.sh " + proxy_ip + " " + str(agent["port"]), ssh, sudo=True)
 
             ssh.close()
         except Exception as e:
@@ -43,7 +44,10 @@ def stop_traffic_collection(agent):
         pass
     else:
         ssh = agents.connect(agent)
-        agents.run_cmd(agent, "killall start-traffic.sh && rm -f /tmp/start-traffic.sh", ssh, sudo=True)
+        agents.upload(agent, os.path.join(settings.AGENTS_DIR, "traffic", "unix", "stop-traffic.sh"), "/tmp/stop-traffic.sh", ssh)
+        agents.run_cmd(agent, "chmod +x /tmp/stop-traffic.sh", ssh)
+        agents.run_cmd(agent, "/tmp/stop-traffic.sh", ssh, sudo=True)
+        agents.run_cmd(agent, "rm -f /tmp/stop-traffic.sh", ssh, sudo=True)
         ssh.close()
 
 
@@ -92,30 +96,35 @@ def traffic_loop():
     while True:
         # Pull traffic from all agents
         for agent in db.data["agents"].values():
-            if agent["capture"] > 0:
-                if agent["os"] == "Windows":
-                    pass
-                else:
-                    # Connect to agent over SSH
-                    ssh = agents.connect(agent)
-                    # Download traffic file
-                    agents.download(agent, "/tmp/traffic.pcap.gz", os.path.join(settings.TRAFFIC_DIR, agent["ip"] + ".pcap.gz"), ssh)
-                    # Close SSH connection
-                    ssh.close()
-                    # Unzip traffic file
-                    os.system("gunzip -f " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + ".pcap.gz"))
-                    # Merge traffic file with existing traffic file
-                    if not os.path.exists(os.path.join(settings.TRAFFIC_DIR, "traffic.pcap")):
-                        # If the traffic file doesn't exist, just copy the new traffic file
-                        os.system("mv " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + ".pcap") + " " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap"))
+            try:
+                if agent["capture"] > 0:
+                    if agent["os"] == "Windows":
+                        pass
                     else:
-                        # If the traffic file exists, merge the new traffic file with the existing traffic file
-                        # Copy the existing traffic file to the new traffic file
-                        os.system("mergecap -w " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap.tmp") + " " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap") + " " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + ".pcap"))
-                        # Overwrite the existing traffic file with the new traffic file
-                        os.system("mv -f " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap.tmp") + " " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap"))
-                        # Delete the old traffic file
-                        os.system("rm -f " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + ".pcap"))
+                        # Connect to agent over SSH
+                        ssh = agents.connect(agent)
+                        # Download traffic file
+                        agents.download(agent, "/tmp/traffic.pcap.gz", os.path.join(settings.TRAFFIC_DIR, agent["ip"] + ".pcap.gz"), ssh)
+                        # Close SSH connection
+                        ssh.close()
+                        # Unzip traffic file
+                        os.system("gunzip -f " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + ".pcap.gz"))
+                        # Catch flags in traffic file
+                        catcher.catch(os.path.join(settings.TRAFFIC_DIR, agent["ip"] + ".pcap"))
+                        # Merge traffic file with existing traffic file
+                        if not os.path.exists(os.path.join(settings.TRAFFIC_DIR, "traffic.pcap")):
+                            # If the traffic file doesn't exist, just copy the new traffic file
+                            os.system("mv " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + ".pcap") + " " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap"))
+                        else:
+                            # If the traffic file exists, merge the new traffic file with the existing traffic file
+                            # Copy the existing traffic file to the new traffic file
+                            os.system("mergecap -w " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap.tmp") + " " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap") + " " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + ".pcap"))
+                            # Overwrite the existing traffic file with the new traffic file
+                            os.system("mv -f " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap.tmp") + " " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap"))
+                            # Delete the old traffic file
+                            os.system("rm -f " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + ".pcap"))
+            except Exception as e:
+                log.log("Error: " + traceback.format_exc())
         # Sleep for n seconds as defined in settings
         time.sleep(settings.TRAFFIC_FREQUENCY)
 

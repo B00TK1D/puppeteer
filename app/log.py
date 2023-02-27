@@ -68,7 +68,6 @@ def get_exploit_log_details(id, timestamp):
 
 
 def get_submit_log(teamFilter=None, serviceFilter=None, statusFilter=None):
-
     global submit_log
     log = submit_log
     if teamFilter:

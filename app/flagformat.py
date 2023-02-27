@@ -9,6 +9,12 @@ def extract_flags(text):
     return re.findall(regex, text)
 
 
+def extract_flags_bytes(text):
+    regex = re.compile(db.data["settings"]["flagformat"].encode("utf-8"))
+    return re.findall(regex, text)
+
+
+
 # Frontend views
 def view_flag_format():
     return flask.render_template("flagformat.html", regex = db.data["settings"]["flagformat"])

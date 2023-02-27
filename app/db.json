@@ -2,17 +2,28 @@
     "exploits": {
         "0": {
             "id": "0",
-            "name": "curl",
+            "name": "catcher-http-1677526139.py",
             "frequency": 10,
-            "path": "curl",
-            "flags_captured": 17,
-            "services_vulnerable": 0,
-            "service_id": "1",
+            "path": "catcher-http-1677526139.py",
+            "flags_captured": 2,
+            "services_vulnerable": 1,
+            "service_id": "10",
             "log": {},
-            "service": "host"
+            "service": "http"
         },
         "1": {
             "id": "1",
+            "name": "curl",
+            "frequency": 60,
+            "path": "curl",
+            "flags_captured": 0,
+            "services_vulnerable": 0,
+            "service_id": "",
+            "log": {},
+            "service": ""
+        },
+        "2": {
+            "id": "2",
             "name": "python",
             "frequency": 60,
             "path": "python",
@@ -25,18 +36,18 @@
     },
     "flags": {},
     "teams": {
-        "0": {
-            "id": "0",
-            "name": "local",
-            "flags_captured": 17
+        "55": {
+            "id": "55",
+            "name": "para",
+            "flags_captured": 24
         }
     },
     "services": {
-        "1": {
-            "id": "1",
-            "name": "host",
+        "10": {
+            "id": "10",
+            "name": "http",
             "notes": "",
-            "flags_captured": 17
+            "flags_captured": 24
         }
     },
     "submissions": {},
@@ -54,10 +65,12 @@
         }
     },
     "settings": {
-        "targetformat": "127.0.T.S",
-        "flagformat": "flag\\${.*}",
+        "targetformat": "10.211.T.S",
+        "flagformat": "flag{.*}",
         "submitrate": 1000,
         "correctregex": ".*success.*",
         "incorrectregex": ".*fail.*"
+    }
+}il.*"
     }
 }

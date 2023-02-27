@@ -9,6 +9,9 @@ RUN apt-get install -y wireshark-common && \
     apt-get install -y wireshark && \
     apt-get install -y libcap2-bin
 
+# Install OpenVPN and WireGuard
+RUN apt-get install -y openvpn wireguard
+
 
 # Install Python modules
 COPY requirements.txt /tmp

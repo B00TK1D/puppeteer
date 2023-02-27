@@ -4,6 +4,7 @@ from flask_bootstrap import Bootstrap4
 import home
 import teams
 import agents
+import catcher
 import targets
 import traffic
 import exploits
@@ -21,7 +22,7 @@ Bootstrap4(app)
 def run():
     global app
     # Run the app
-    app.run(port=8088, host="0.0.0.0", debug=True, use_evalex=False)
+    app.run(port=8088, host="0.0.0.0", debug=True, use_evalex=False, exclude_patterns=["/app/exploits/*"])
 
 
 
@@ -98,6 +99,12 @@ def route_init_agent():
 def route_new_agent():
     return agents.view_new_agent()
 
+### Catcher Routes ###
+@app.route("/catcher", methods=["GET"])
+def route_catcher():
+    return catcher.view_catcher()
+
+
 ### Dashboard Routes ###
 @app.route("/", methods=["GET"])
 def route_home():
@@ -117,6 +124,10 @@ def route_create_exploit():
 @app.route("/api/exploits/update", methods=["POST"])
 def route_update_exploit():
     return exploits.update_exploit()
+
+@app.route("/api/exploits/log/clear", methods=["GET"])
+def route_clear_exploit_log():
+    return exploits.clear_exploit_log()
 
 @app.route("/api/exploits/archive", methods=["GET"])
 def route_archive_exploit():
@@ -202,6 +213,15 @@ def route_start_traffic():
 @app.route("/api/traffic/stop", methods=["GET"])
 def route_stop_traffic():
     return traffic.stop_capture()
+
+### Catcher API ###
+@app.route("/api/catcher/build", methods=["GET"])
+def route_build_catcher():
+    return catcher.build_exploit()
+
+@app.route("/api/catcher/ignore", methods=["GET"])
+def route_ignore_catcher():
+    return catcher.ignore_similar()
 
 ### Dashboard API ###
 @app.route("/api/counters/reset", methods=["GET"])

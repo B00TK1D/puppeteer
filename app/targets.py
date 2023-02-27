@@ -50,4 +50,6 @@ def view_targets():
 def update_targets():
     db.data["settings"]["targetformat"] = flask.request.form.get("format")
 
+    format = db.data["settings"]["targetformat"]
+
     return flask.render_template("targets.html", targets = list_targets(), format = format, messages = ["Targets updated"])

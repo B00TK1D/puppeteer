@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% set active_page = "Flag Catcher" %}
+{% set refresh_interval = 5 %}
+{% block content %}
+    <table class="table table-hover table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Time</th>
+            <th scope="col">Victim IP</th>
+            <th scope="col">Victim Port</th>
+            <th scope="col">Attacker IP</th>
+            <th scope="col">Attacker Port</th>
+            <th scope="col">Flags</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for catch in catches.values() %}
+            <tr>
+                <th scope="row">{{ catch.timestamp }}</th>
+                <td>{{ catch.victim_ip }}</td>
+                <td>{{ catch.victim_port }}</td>
+                <td>{{ catch.attacker_ip }}</td>
+                <td>{{ catch.attacker_port }}</td>
+                <td>{{ catch.flags }}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-primary" href="/api/catcher/build?id={{ catch.id }}">Build Exploit</a>
+                        <a class="btn btn-secondary" href="/api/catcher/ignore?id={{ catch.id }}">Ignore Similar</a>
+                        <a class="btn btn-danger" href="/api/catcher/block?id={{ catch.id }}">Block</a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
