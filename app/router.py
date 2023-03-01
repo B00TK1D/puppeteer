@@ -1,6 +1,7 @@
 import flask
 from flask_bootstrap import Bootstrap4
 
+import vpn
 import home
 import teams
 import agents
@@ -103,6 +104,11 @@ def route_new_agent():
 @app.route("/catcher", methods=["GET"])
 def route_catcher():
     return catcher.view_catcher()
+
+### VPN Routes ###
+@app.route("/vpn", methods=["GET"])
+def route_vpn():
+    return vpn.view_vpn()
 
 
 ### Dashboard Routes ###
@@ -222,6 +228,19 @@ def route_build_catcher():
 @app.route("/api/catcher/ignore", methods=["GET"])
 def route_ignore_catcher():
     return catcher.ignore_similar()
+
+### VPN API ###
+@app.route("/api/vpn/update", methods=["POST"])
+def route_update_vpn():
+    return vpn.update_vpn()
+
+@app.route("/api/vpn/connect", methods=["GET"])
+def route_start_vpn():
+    return vpn.connect_vpn()
+
+@app.route("/api/vpn/disconnect", methods=["GET"])
+def route_stop_vpn():
+    return vpn.disconnect_vpn()
 
 ### Dashboard API ###
 @app.route("/api/counters/reset", methods=["GET"])

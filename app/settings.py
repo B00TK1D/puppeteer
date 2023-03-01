@@ -44,3 +44,8 @@ TRAFFIC_FREQUENCY = 10
 # Logging settings
 LOG_DIR = os.path.join(BASE_DIR, "logs")
 LOG_FILE = os.path.join(LOG_DIR, "puppeteer.log")
+
+# VPN settings
+VPN_DIR = os.path.join(BASE_DIR, "vpn")
+VPN_CONNECT_FILE = os.path.join(VPN_DIR, "connect.sh")
+VPN_CONFIG_FILE = os.path.join(VPN_DIR, "vpn.dat")

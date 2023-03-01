@@ -1,6 +1,25 @@
-FROM python:3.8-slim-buster
+FROM debian:buster-slim
 
-# Install dependencies
+# Add backports
+RUN echo "deb http://deb.debian.org/debian buster-backports main" >> /etc/apt/sources.list
+
+# Install OpenVPN
+#RUN apt-get update
+#RUN apt-get install -y wget apt-transport-https gnupg
+#RUN wget https://swupdate.openvpn.net/repos/openvpn-repo-pkg-key.pub
+#RUN apt-key add openvpn-repo-pkg-key.pub
+#RUN wget -O /etc/apt/sources.list.d/openvpn3.list https://swupdate.openvpn.net/community/openvpn3/repos/openvpn3-buster.list
+#RUN apt-get update
+#RUN apt-get install -y openvpn3
+
+# Install OpenVPN
+RUN apt-get update
+RUN apt-get install -y openvpn
+
+# Install WireGuard
+RUN apt-get install -y wireguard
+
+# Install pcap dependencies
 RUN apt-get update && apt-get install -y gzip tshark
 
 # Install mergecap
@@ -9,26 +28,16 @@ RUN apt-get install -y wireshark-common && \
     apt-get install -y wireshark && \
     apt-get install -y libcap2-bin
 
-# Install OpenVPN and WireGuard
-RUN apt-get install -y openvpn wireguard
 
 
 # Install Python modules
 COPY requirements.txt /tmp
-RUN python3 -m pip install --no-cache-dir --upgrade pip && \
-    python3 -m pip install --no-cache-dir wheel && \
-    python3 -m pip install --no-cache-dir -r /tmp/requirements.txt \
-    && rm /tmp/requirements.txt
+RUN apt-get install -y python3 python3-pip
+RUN python3 -m pip install --no-cache-dir --upgrade pip
+RUN python3 -m pip install --no-cache-dir wheel
+RUN python3 -m pip install --no-cache-dir -r /tmp/requirements.txt
+RUN rm /tmp/requirements.txt
 
-# Run app as non-root user
-RUN adduser --disabled-password --gecos '' puppeteer && \
-    chown -R puppeteer /usr/local/lib/python3.8/site-packages
-
-# Switch to non-root user
-#USER puppeteer
-
-# Own app directory
-#RUN chown -R puppeteer /app
 WORKDIR /app
 
 # Run app

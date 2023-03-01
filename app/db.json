@@ -1,45 +1,11 @@
 {
-    "exploits": {
-        "0": {
-            "id": "0",
-            "name": "catcher-http-1677526139.py",
-            "frequency": 10,
-            "path": "catcher-http-1677526139.py",
-            "flags_captured": 3,
-            "services_vulnerable": 1,
-            "service_id": "10",
-            "log": {},
-            "service": "http"
-        },
-        "1": {
-            "id": "1",
-            "name": "curl",
-            "frequency": 60,
-            "path": "curl",
-            "flags_captured": 0,
-            "services_vulnerable": 0,
-            "service_id": "",
-            "log": {},
-            "service": ""
-        },
-        "2": {
-            "id": "2",
-            "name": "python",
-            "frequency": 60,
-            "path": "python",
-            "flags_captured": 0,
-            "services_vulnerable": 0,
-            "service_id": "",
-            "log": {},
-            "service": ""
-        }
-    },
+    "exploits": {},
     "flags": {},
     "teams": {
         "55": {
             "id": "55",
             "name": "para",
-            "flags_captured": 25
+            "flags_captured": 29
         }
     },
     "services": {
@@ -47,7 +13,7 @@
             "id": "10",
             "name": "http",
             "notes": "",
-            "flags_captured": 25
+            "flags_captured": 29
         }
     },
     "submissions": {},
@@ -59,6 +25,19 @@
             "password": "ctf123js",
             "hostname": "ubuntu-linux-20-04-desktop",
             "os": "Linux",
+            "status": "Idle",
+            "admin": 1,
+            "capture": 0
+        }
+    },
+    "settings": {
+        "targetformat": "10.211.T.S",
+        "flagformat": "flag{.*}",
+        "submitrate": 1000,
+        "correctregex": ".*success.*",
+        "incorrectregex": ".*fail.*"
+    }
+}  "os": "Linux",
             "status": "Idle",
             "admin": 1,
             "capture": 0
