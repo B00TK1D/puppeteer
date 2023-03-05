@@ -13,7 +13,7 @@ def run_update():
     pid = os.getpid()
     os.system("git pull")
     os.system("sudo pip3 install -r ../deploy/docker/requirements.txt")
-    os.system("echo \"#!/bin/sh\nsudo kill -9 " + str(pid) + "\nsleep 5\nsudo python3 app.py\n\" > update.sh")
+    os.system("echo \"#!/bin/sh\nsudo kill -9 " + str(pid) + "\nsudo fuser -k 8088/udp\nsleep 5\nsudo python3 app.py\n\" > update.sh")
     os.system("sudo nohup sh update.sh &")
 
 
