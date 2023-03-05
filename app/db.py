@@ -41,7 +41,6 @@ def load():
     try:
         with open(settings.DB_FILE, "r") as f:
             data = json.load(f)
-            print(data)
     except FileNotFoundError:
         pass
 
