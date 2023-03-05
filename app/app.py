@@ -20,8 +20,7 @@ def main():
     exploits.load_exploits()
 
     # Start backup thread
-    db.backup_thread.daemon = True
-    db.backup_thread.start()
+    db.start()
 
     # Start the submitter thread
     submitter.submit_thread.daemon = True
