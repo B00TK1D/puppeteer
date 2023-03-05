@@ -22,7 +22,8 @@ def init():
             "flagformat": settings.FLAGFORMAT_DEFAULT_REGEX,
             "submitrate": settings.SUBMITTER_DEFAULT_RATE,
             "correctregex": settings.SUBMITTER_DEFAULT_CORRECT_REGEX,
-            "incorrectregex": settings.SUBMITTER_DEFAULT_INCORRECT_REGEX
+            "incorrectregex": settings.SUBMITTER_DEFAULT_INCORRECT_REGEX,
+            "password": ""
         }
     }
 
@@ -40,6 +41,7 @@ def load():
     try:
         with open(settings.DB_FILE, "r") as f:
             data = json.load(f)
+            print(data)
     except FileNotFoundError:
         pass
 
