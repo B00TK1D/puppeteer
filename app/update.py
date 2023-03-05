@@ -16,7 +16,6 @@ def run_update():
     os.system("sudo git pull")
     print("done")
 
-
 # Backend functions
 def update():
     run_update()
