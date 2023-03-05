@@ -2,4 +2,5 @@
 .log
 .pcap
 app/log/puppeteer.log
+app/db.json
 app/__pycache__/
