@@ -2,7 +2,7 @@ import os
 
 
 #BASE_DIR = os.path.realpath(__file__).rsplit("/", 1)[0]
-BASE_DIR = "/app"
+BASE_DIR = "./"
 
 # Database settings
 DB_FILE = os.path.join(BASE_DIR, "db.json")
