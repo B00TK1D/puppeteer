@@ -19,7 +19,7 @@ def view_vpn():
 def connect_vpn():
     global connect_p
     os.system("chmod +x " + settings.VPN_CONNECT_FILE)
-    connect_p = subprocess.Popen([settings.VPN_CONNECT_FILE])
+    connect_p = subprocess.Popen(['sudo', settings.VPN_CONNECT_FILE])
 
     code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
 
