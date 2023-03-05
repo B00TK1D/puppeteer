@@ -11,7 +11,6 @@ def run_update():
     db.pause()
     # Update the system
     pid = os.getpid()
-    os.system("git stash")
     os.system("git pull")
     os.system("sudo pip3 install -r ../deploy/docker/requirements.txt")
     os.system("echo -e \"#!/bin/sh\nsudo kill -9 " + str(pid) + "\nsleep 5\nsudo python3 app.py\n\" > update.sh")
