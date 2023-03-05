@@ -3,6 +3,7 @@ requests
 bootstrap-flask
 flask-sqlalchemy
 flask-codemirror
+pyjwt
 flask-wtf
 paramiko
 scapy

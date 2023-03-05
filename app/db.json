@@ -1,5 +1,16 @@
 {
-    "exploits": {},
+    "exploits": {
+        "0": {
+            "id": "0",
+            "name": "DNS Zone Transfer",
+            "frequency": 60,
+            "path": "DNS Zone Transfer",
+            "flags_captured": 0,
+            "services_vulnerable": 0,
+            "service_id": "",
+            "log": {}
+        }
+    },
     "flags": {},
     "teams": {
         "55": {
@@ -25,19 +36,6 @@
             "password": "ctf123js",
             "hostname": "ubuntu-linux-20-04-desktop",
             "os": "Linux",
-            "status": "Idle",
-            "admin": 1,
-            "capture": 0
-        }
-    },
-    "settings": {
-        "targetformat": "10.211.T.S",
-        "flagformat": "flag{.*}",
-        "submitrate": 1000,
-        "correctregex": ".*success.*",
-        "incorrectregex": ".*fail.*"
-    }
-}  "os": "Linux",
             "status": "Idle",
             "admin": 1,
             "capture": 0

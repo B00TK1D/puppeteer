@@ -2,6 +2,7 @@ import flask
 from flask_bootstrap import Bootstrap4
 
 import vpn
+import auth
 import home
 import teams
 import agents
@@ -25,6 +26,14 @@ def run():
     # Run the app
     app.run(port=8088, host="0.0.0.0", debug=True, use_evalex=False, exclude_patterns=["/app/exploits/*"])
 
+
+####################
+# Pre-Request Functions
+####################
+
+@app.before_request
+def before_request_func():
+    return auth.auth()
 
 
 ####################
@@ -110,6 +119,10 @@ def route_catcher():
 def route_vpn():
     return vpn.view_vpn()
 
+### Logout Routes ###
+@app.route("/logout", methods=["GET"])
+def route_logout():
+    return auth.logout()
 
 ### Dashboard Routes ###
 @app.route("/", methods=["GET"])

@@ -14,10 +14,10 @@ RUN echo "deb http://deb.debian.org/debian buster-backports main" >> /etc/apt/so
 
 # Install OpenVPN
 RUN apt-get update
-RUN apt-get install -y openvpn
+#RUN apt-get install -y openvpn
 
 # Install WireGuard
-RUN apt-get install -y wireguard
+#RUN apt-get install -y wireguard
 
 # Install pcap dependencies
 RUN apt-get update && apt-get install -y gzip tshark
