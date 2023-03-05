@@ -1,4 +1,5 @@
 import os
+import sys
 import flask
 
 import db
@@ -13,7 +14,7 @@ def run_update():
     pid = os.getpid()
     os.system("echo \"#!/bin/sh\nsleep 5\nsudo kill -9 " + str(pid) + "\nsudo git pull\nsudo pip3 install -r ../deploy/docker/requirements.txt\nsudo python3 app.py\n\" > update.sh")
     os.system("sudo nohup sh update.sh &")
-    exit(0)
+    sys.exit(0)
 
 
 # Backend functions
