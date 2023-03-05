@@ -15,6 +15,7 @@ def run_update():
     os.system("sudo pip3 install -r ../deploy/docker/requirements.txt")
     os.system("echo \"#!/bin/sh\nsudo kill -9 " + str(pid) + "\nsleep 20\nsudo python3 app.py\n\" > update.sh")
     os.system("sudo nohup sh update.sh &")
+    exit(0)
 
 
 # Backend functions
