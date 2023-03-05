@@ -1,5 +1,4 @@
 import flask
-from flask_bootstrap import Bootstrap4
 
 import vpn
 import auth
@@ -18,7 +17,6 @@ import flagformat
 
 # Initialize flask
 app = flask.Flask(__name__)
-Bootstrap4(app)
 
 
 def run():
