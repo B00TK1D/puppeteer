@@ -25,7 +25,7 @@ def run_update():
 def check_update():
     # Check if there is an update
     os.system("sudo git fetch")
-    status = os.system("sudo git status")
+    status = os.popen("sudo git status").read()
     if "up to date" in status:
         return 0
     else:
