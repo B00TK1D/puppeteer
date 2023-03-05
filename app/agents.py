@@ -1,6 +1,7 @@
 import os
 import re
 import flask
+import psutil
 import paramiko
 import traceback
 import threading
@@ -155,7 +156,11 @@ def init_agent(agent):
     except Exception as e:
         db.data["agents"][agent["ip"]]["status"] = "Failed to initialize: " + traceback.format_exc()
 
-
+def get_status():
+    addrs = psutil.net_if_addrs()
+    if "tun0" in addrs:
+        return "Connected"
+    return "Disconnected"
 
 # Frontend views
 def view_agents():

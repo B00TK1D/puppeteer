@@ -1,4 +1,5 @@
 import db
+import auth
 import router
 import traffic
 import exploits
@@ -10,6 +11,9 @@ def main():
     db.init()
 
     db.load()
+
+    # Initialize auth
+    auth.init()
 
     # Load the exploits
     exploits.load_exploits()

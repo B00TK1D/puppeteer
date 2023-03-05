@@ -5,7 +5,9 @@ import threading
 
 import settings
 
+paused = False
 
+# Helper functions
 def init():
     global data, id_iter
     data = {
@@ -26,14 +28,12 @@ def init():
 
     id_iter = itertools.count()
 
-
 def save():
     global data
 
     # Write to file
     with open(settings.DB_FILE, "w") as f:
         json.dump(data, f, indent=4)
-
 
 def load():
     global data
@@ -43,9 +43,20 @@ def load():
     except FileNotFoundError:
         pass
 
+def pause():
+    global backup_thread, paused
+    paused = True
+    backup_thread.join()
+
+def start():
+    global backup_thread
+    backup_thread.daemon = True
+    backup_thread.start()
+
 # Set up a backup thread that saves the database every 5 seconds
 def backup_loop():
-    while True:
+    global paused
+    while not paused:
         save()
         time.sleep(settings.BACKUP_FREQUENCY)
 

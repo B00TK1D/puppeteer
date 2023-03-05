@@ -3,17 +3,29 @@ import jwt
 import flask
 import binascii
 
+import db
 import log
 
-# Randomly generated jwt secret key
-jwt_secret = binascii.b2a_hex(os.urandom(16))
-
-# Randomly generate admin password
-admin_password = binascii.b2a_hex(os.urandom(16)).decode('utf-8')
-
-print("Admin password: " + admin_password, flush=True)
+jwt_secret = ""
+admin_password = ""
 
 # Helper functions
+def init():
+    global jwt_secret, admin_password
+    admin_password = binascii.b2a_hex(os.urandom(16)).decode('utf-8')
+    try:
+        if db.data["settings"]["password"] != "":
+            admin_password = db.data["settings"]["password"]
+    except:
+        pass
+
+    db.data["settings"]["password"] = admin_password
+
+    print("Admin password: " + admin_password)
+
+    # Randomly generate jwt secret
+    jwt_secret = binascii.b2a_hex(os.urandom(16))
+
 def validate(token):
     global jwt_secret
     try:

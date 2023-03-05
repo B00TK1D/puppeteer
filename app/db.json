@@ -46,6 +46,7 @@
         "flagformat": "flag{.*}",
         "submitrate": 1000,
         "correctregex": ".*success.*",
-        "incorrectregex": ".*fail.*"
+        "incorrectregex": ".*fail.*",
+        "password": "38bf86f6faa0eee63771487c63e49190"
     }
 }

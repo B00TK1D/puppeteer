@@ -5,6 +5,7 @@ import auth
 import home
 import teams
 import agents
+import update
 import catcher
 import targets
 import traffic
@@ -252,6 +253,11 @@ def route_start_vpn():
 @app.route("/api/vpn/disconnect", methods=["GET"])
 def route_stop_vpn():
     return vpn.disconnect_vpn()
+
+### Update API ###
+@app.route("/api/update", methods=["GET"])
+def route_update():
+    return update.update()
 
 ### Dashboard API ###
 @app.route("/api/counters/reset", methods=["GET"])
