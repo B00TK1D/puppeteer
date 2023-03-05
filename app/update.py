@@ -13,7 +13,7 @@ def run_update():
     os.system("git stash")
     os.system("git pull")
     os.system("sudo pip3 install -r ../deploy/docker/requirements.txt")
-    os.system("echo -e \"#!/bin/sh\nsudo killall python3\nsudo python3 app.py\n\" > update.sh")
+    os.system("echo -e \"#!/bin/sh\nsudo killall python3\nsudo python3 app.py\nrm update.sh\n\" > update.sh")
     os.system("sudo sh update.sh")
 
 
