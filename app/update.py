@@ -14,13 +14,14 @@ def ensure_dependencies():
     os.system("sudo pip3 install -r ../deploy/docker/requirements.txt")
 
 def run_update():
+    global update_status
     # Save current state
     db.save()
     # Stop backup thread
     db.pause()
     # Update the system
     os.system("sudo git pull")
-    print("done")
+    update_status = "Updated successfully"
 
 def check_update():
     # Check if there is an update
