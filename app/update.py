@@ -15,7 +15,7 @@ def run_update():
     os.system("git pull")
     os.system("sudo pip3 install -r ../deploy/docker/requirements.txt")
     os.system("echo -e \"#!/bin/sh\nsudo kill -9 " + str(pid) + "\nsudo python3 app.py\nrm update.sh\n\" > update.sh")
-    os.system("sudo sh update.sh")
+    os.system("sudo nohup sh update.sh &")
 
 
 # Backend functions
