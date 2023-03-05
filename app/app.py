@@ -1,6 +1,7 @@
 import db
 import auth
 import router
+import update
 import traffic
 import exploits
 import submitter
@@ -33,6 +34,9 @@ def main():
     # Start the traffic thread
     traffic.traffic_thread.daemon = True
     traffic.traffic_thread.start()
+
+    # Start the update thread
+    update.start()
 
     # Run the router
     router.run()
