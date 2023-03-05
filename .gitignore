@@ -1,4 +1,5 @@
 .env
 .log
 .pcap
+app/log/puppeteer.log
 app/__pycache__/
