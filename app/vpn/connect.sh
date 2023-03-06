@@ -1,3 +1,3 @@
 #!/bin/sh
 
-openvpn --config /app/vpn/vpn.dat
+openvpn vpn/vpn.dat
