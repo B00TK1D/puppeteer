@@ -51,7 +51,7 @@ def check_loop():
             update_status = str(count) + " updates available"
         else:
             update_status = "No updates available"
-        time.sleep(60)
+        time.sleep(20)
 
 def start():
     # Start update thread
