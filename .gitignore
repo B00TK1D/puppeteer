@@ -1,6 +1,14 @@
-.env
-.log
-.pcap
+*.env
+*.log
+*.pcap
+*.pcap.gz
 app/log/puppeteer.log
 app/db.json
+app/exploits/
+app/vpn/vpn.dat
+app/vpn/connect.sh
 app/__pycache__/
+app/nohup.out
+app/update.sh
+app/agents/init/
+app/submitter/submitter
