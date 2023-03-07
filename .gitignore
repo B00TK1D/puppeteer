@@ -12,3 +12,4 @@ app/nohup.out
 app/update.sh
 app/agents/init/
 app/submitter/submitter
+app/settings.py

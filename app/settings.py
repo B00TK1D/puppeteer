@@ -7,6 +7,8 @@ BASE_DIR = "./"
 # Database settings
 DB_FILE = os.path.join(BASE_DIR, "db.json")
 BACKUP_FREQUENCY = 5
+BACKUP_DIR = os.path.join(BASE_DIR, "backup")
+BACKUP_FILE = os.path.join(BASE_DIR, "backup.tar.tz")
 
 # Exploit settings
 EXPLOITS_DIR = os.path.join(BASE_DIR, "exploits")

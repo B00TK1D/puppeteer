@@ -1,3 +1,4 @@
+import os
 import json
 import time
 import itertools
@@ -53,6 +54,101 @@ def start():
     global backup_thread
     backup_thread.daemon = True
     backup_thread.start()
+
+def create_backup():
+    global data
+    backup = data.copy()
+    
+    # Create backup folder
+    if not os.path.exists(settings.BACKUP_DIR):
+        os.makedirs(settings.BACKUP_DIR)
+    else:
+        # Delete old backups
+        for f in os.listdir(settings.BACKUP_DIR):
+            os.remove(os.path.join(settings.BACKUP_DIR, f))
+
+    # Write data to file
+    with open(os.path.join(settings.BACKUP_DIR, "db.json"), "w") as f:
+        json.dump(backup, f, indent=4)
+
+    # Recursively copy exploits from exploits to backup/exploits
+    if not os.path.exists(os.path.join(settings.BACKUP_DIR, "exploits")):
+        os.makedirs(os.path.join(settings.BACKUP_DIR, "exploits"))
+
+    for f in os.listdir(settings.EXPLOITS_DIR):
+        if os.path.isfile(os.path.join(settings.EXPLOITS_DIR, f)):
+            os.system("cp {} {}".format(os.path.join(settings.EXPLOITS_DIR, f), os.path.join(settings.BACKUP_DIR, "exploits")))
+
+    # Recursively copy submitter from exploits/archive to backup/exploits/archive
+    if not os.path.exists(os.path.join(settings.BACKUP_DIR, "exploits", "archive")):
+        os.makedirs(os.path.join(settings.BACKUP_DIR, "exploits", "archive"))
+
+    for f in os.listdir(settings.EXPLOITS_ARCHIVE_DIR):
+        if os.path.isfile(os.path.join(settings.EXPLOITS_ARCHIVE_DIR, f)):
+            os.system("cp {} {}".format(os.path.join(settings.EXPLOITS_ARCHIVE_DIR, f), os.path.join(settings.BACKUP_DIR, "exploits", "archive")))
+
+    # Copy submitter from submitter/submitter to backup/submitter
+    os.system("cp {} {}".format(settings.SUBMITTER_FILE, os.path.join(settings.BACKUP_DIR, "submitter")))
+
+    # Copy vpn/connect.sh to backup/vpn/connect.sh
+    if not os.path.exists(os.path.join(settings.BACKUP_DIR, "vpn")):
+        os.makedirs(os.path.join(settings.BACKUP_DIR, "vpn"))
+
+    os.system("cp {} {}".format(settings.VPN_CONNECT_FILE, os.path.join(settings.BACKUP_DIR, "vpn", "connect.sh")))
+
+    # Copy agents/init to backup/agents/init
+    if not os.path.exists(os.path.join(settings.BACKUP_DIR, "agents")):
+        os.makedirs(os.path.join(settings.BACKUP_DIR, "agents"))
+
+    for f in os.listdir(os.path.join(settings.AGENTS_DIR, "init")):
+        if os.path.isfile(os.path.join(settings.AGENTS_DIR, "init", f)):
+            os.system("cp {} {}".format(os.path.join(settings.AGENTS_DIR, "init", f), os.path.join(settings.BACKUP_DIR, "agents")))
+
+    # gzip backup directory
+    os.system("tar -czf {} {}".format(settings.BACKUP_FILE, settings.BACKUP_DIR))
+
+    # Delete backup directory
+    os.system("rm -rf {}".format(settings.BACKUP_DIR))
+
+
+def restore_backup():
+    global data
+    # Unzip backup.tar.gz
+    os.system("tar -xzf {}".format(settings.BACKUP_FILE))
+
+    # Recursively copy exploits from backup/exploits to exploits
+    for f in os.listdir(os.path.join(settings.BACKUP_DIR, "exploits")):
+        if os.path.isfile(os.path.join(settings.BACKUP_DIR, "exploits", f)):
+            os.system("cp {} {}".format(os.path.join(settings.BACKUP_DIR, "exploits", f), settings.EXPLOITS_DIR))
+
+    # Recursively copy submitter from backup/exploits/archive to exploits/archive
+    for f in os.listdir(os.path.join(settings.BACKUP_DIR, "exploits", "archive")):
+        if os.path.isfile(os.path.join(settings.BACKUP_DIR, "exploits", "archive", f)):
+            os.system("cp {} {}".format(os.path.join(settings.BACKUP_DIR, "exploits", "archive", f), settings.EXPLOITS_ARCHIVE_DIR))
+
+    # Copy submitter from backup/submitter to submitter/submitter
+    os.system("cp {} {}".format(os.path.join(settings.BACKUP_DIR, "submitter"), settings.SUBMITTER_FILE))
+
+    # Copy vpn/connect.sh to backup/vpn/connect.sh
+    os.system("cp {} {}".format(os.path.join(settings.BACKUP_DIR, "vpn", "connect.sh"), settings.VPN_CONNECT_FILE))
+
+    # Copy agents/init to backup/agents/init
+    for f in os.listdir(os.path.join(settings.BACKUP_DIR, "agents")):
+        if os.path.isfile(os.path.join(settings.BACKUP_DIR, "agents", f)):
+            os.system("cp {} {}".format(os.path.join(settings.BACKUP_DIR, "agents", f), os.path.join(settings.AGENTS_DIR, "init")))
+
+    # Copy db.json to db.json
+    os.system("cp {} {}".format(os.path.join(settings.BACKUP_DIR, "db.json"), settings.DB_FILE))
+
+    # Delete backup directory
+    os.system("rm -rf {}".format(settings.BACKUP_DIR))
+
+    # Reload the database
+    load()
+
+
+
+
 
 # Set up a backup thread that saves the database every 5 seconds
 def backup_loop():
