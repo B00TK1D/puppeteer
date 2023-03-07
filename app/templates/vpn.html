@@ -2,7 +2,7 @@
 {% set active_page = "VPN" %}
 {% block content %}
     <form action="/api/vpn/update" method="post" enctype=multipart/form-data>
-        {{ input("Related file (will be renamed to vpn.dat)", "file", "file", options="") }}
+        {{ input("Related file (will be renamed to vpn/vpn.dat)", "file", "file", options="") }}
         <code>
             <textarea class="form-control" id="code" name="code" rows="20">{{ code }}</textarea>
         </code>
