@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% set active_page = "VPN" %}
 {% block content %}
+    <h2>Status</h2>
+    <p>{{ status }}</p>
     <form action="/api/vpn/update" method="post" enctype=multipart/form-data>
         {{ input("Related file (will be renamed to vpn/vpn.dat)", "file", "file", options="") }}
         <code>
