@@ -8,8 +8,6 @@ import settings
 
 connect_p = None
 
-list(filter(lambda x: 'Chrome' in x.name, [p for p in psutil.process_iter()]))
-
 # Helper functions
 def get_status():
     # List interfaces
