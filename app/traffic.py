@@ -98,8 +98,9 @@ def traffic_loop():
     global MERGE_ALL
     # Start arkime capture if installed
     if os.path.exists("/opt/arkime/bin/capture"):
-        subprocess.Popen(['sudo', '/opt/arkime/bin/capture', '-r', settings.TRAFFIC_DIR, '-m'])
+        p = subprocess.Popen(['sudo', '/opt/arkime/bin/capture', '-r', settings.TRAFFIC_DIR, '-m'])
     while True:
+        print("Pulling traffic")
         # Pull traffic from all agents
         for agent in db.data["agents"].values():
             try:
