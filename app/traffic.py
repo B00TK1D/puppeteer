@@ -127,11 +127,11 @@ def traffic_loop():
                             else:
                                 # If the traffic file exists, merge the new traffic file with the existing traffic file
                                 # Copy the existing traffic file to the new traffic file
-                                os.system("mergecap -w " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap.tmp") + " " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap") + " " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + + ".pcap"))
+                                os.system("mergecap -w " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap.tmp") + " " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap") + " " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + ".pcap"))
                                 # Overwrite the existing traffic file with the new traffic file
                                 os.system("mv -f " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap.tmp") + " " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap"))
                                 # Delete the old traffic file
-                                os.system("rm -f " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + + ".pcap"))
+                                os.system("rm -f " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + ".pcap"))
             except Exception as e:
                 log.log("Error: " + traceback.format_exc())
         # Sleep for n seconds as defined in settings
