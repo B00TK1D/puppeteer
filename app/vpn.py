@@ -52,7 +52,7 @@ def connect_vpn():
 
     code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
 
-    return flask.render_template("vpn/index.html", code = code, messages = ["VPN connected"])
+    return flask.redirect("/vpn?message=Connecting...")
 
 
 def disconnect_vpn():
