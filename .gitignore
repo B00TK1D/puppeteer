@@ -2,6 +2,7 @@
 *.log
 *.pcap
 *.pcap.gz
+*.json
 app/logs/puppeteer.log
 app/db.json
 app/exploits/
