@@ -1,9 +1,9 @@
 import os
 import time
 import flask
-import paramiko
 import threading
 import traceback
+import subprocess
 
 import db
 import log
@@ -96,6 +96,9 @@ def stop_capture():
 # Thread functions
 def traffic_loop():
     global MERGE_ALL
+    # Start arkime capture if installed
+    if os.path.exists("/opt/arkime/bin/capture"):
+        subprocess.Popen(['sudo', '/opt/arkime/bin/capture', '-r', settings.TRAFFIC_DIR, '-m'])
     while True:
         # Pull traffic from all agents
         for agent in db.data["agents"].values():
