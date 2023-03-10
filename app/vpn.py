@@ -57,7 +57,8 @@ def connect_vpn():
 
 def disconnect_vpn():
     global connect_p
-    connect_p.kill()
+    if connect_p != None:
+        connect_p.kill()
     # Kill all openvpn processes
     os.system("sudo pkill openvpn")
 
