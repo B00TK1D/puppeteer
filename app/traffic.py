@@ -118,7 +118,7 @@ def traffic_loop():
                         # Unzip traffic file
                         os.system("gunzip -f " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + ".pcap.gz"))
                         # Catch flags in traffic file
-                        catcher.catch(os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + + ".pcap"))
+                        catcher.catch(os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + ".pcap"))
                         # Merge traffic file with existing traffic file
                         if MERGE_ALL:
                             if not os.path.exists(os.path.join(settings.TRAFFIC_DIR, "traffic.pcap")):
