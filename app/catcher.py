@@ -89,6 +89,7 @@ def catch(pcap):
                     "attacker_port": attacker_port,
                     "timestamp": timestamp,
                     "flags": flags,
+                    "pcap": pcap,
                     "packets": []
                 }
                 break
@@ -232,4 +233,3 @@ def ignore_similar():
 def view_catcher():
     global all_catches
     return flask.render_template("catcher/index.html", catches=all_catches)
-

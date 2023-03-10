@@ -113,6 +113,10 @@ def route_new_agent():
 def route_catcher():
     return catcher.view_catcher()
 
+@app.route("/catcher/view", methods=["GET"])
+def route_catch():
+    return catcher.view_catch()
+
 ### VPN Routes ###
 @app.route("/vpn", methods=["GET"])
 def route_vpn():
