@@ -118,6 +118,10 @@ def route_catcher():
 def route_vpn():
     return vpn.view_vpn()
 
+@app.route("/vpn/modify", methods=["GET"])
+def route_modify_vpn():
+    return vpn.view_modify_vpn()
+
 ### Logout Routes ###
 @app.route("/logout", methods=["GET"])
 def route_logout():

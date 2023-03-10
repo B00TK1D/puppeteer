@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% set active_page = "VPN" %}
+{% set refresh_interval = 5 %}
+{% block content %}
+    <h2>Status</h2>
+    <p>{{ status }}</p>
+    <a class="btn btn-secondary" href="/vpn/modify">Edit</a>
+    <br/>
+    <a class="btn btn-primary" href="/api/vpn/connect">Connect</a>
+    <a class="btn btn-danger" href="/api/vpn/disconnect">Disconnect</a>
+{% endblock %}

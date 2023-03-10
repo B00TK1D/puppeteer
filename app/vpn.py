@@ -30,7 +30,18 @@ def get_status():
 def view_vpn():
     code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
     status = get_status()
-    return flask.render_template("vpn.html", code = code, status = status)
+    messages = [flask.request.args.get("message")]
+    if messages[0] == None:
+        messages = []
+    return flask.render_template("vpn/index.html", code = code, status = status, messages = messages)
+
+def view_modify_vpn():
+    code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
+    status = get_status()
+    messages = [flask.request.args.get("message")]
+    if messages[0] == None:
+        messages = []
+    return flask.render_template("vpn/modify.html", code = code, status = status, messages = messages)
 
 
 # Backend functions
@@ -47,6 +58,8 @@ def connect_vpn():
 def disconnect_vpn():
     global connect_p
     connect_p.kill()
+    # Kill all openvpn processes
+    os.system("sudo killall openvpn")
 
     code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
 
@@ -65,4 +78,4 @@ def update_vpn():
 
     utils.write_file_contents(os.path.join(settings.VPN_CONNECT_FILE), code)
 
-    return flask.render_template("vpn.html", code = code, messages = ["VPN updated"])
+    return flask.redirect("/vpn/modify?message=VPN+updated")

@@ -47,6 +47,6 @@
         "submitrate": 1000,
         "correctregex": ".*success.*",
         "incorrectregex": ".*fail.*",
-        "password": ""
+        "password": "37c5d20f9618c16252736c0aac235503"
     }
 }
