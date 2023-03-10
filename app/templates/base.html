@@ -85,6 +85,9 @@
         {% endblock %}
         <title>{{ active_page }}</title>
     {% endblock %}
+    <script>
+        window.history.replaceState(null, null, window.location.pathname);
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
