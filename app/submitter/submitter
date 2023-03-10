@@ -1,7 +1,0 @@
-#!/bin/sh
-
-FLAG=$1
-
-#curl -s http://127.0.0.1:8888/submit?flag=$FLAG
-
-echo success

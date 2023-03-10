@@ -2,7 +2,7 @@
 *.log
 *.pcap
 *.pcap.gz
-app/log/puppeteer.log
+app/logs/puppeteer.log
 app/db.json
 app/exploits/
 app/vpn/vpn.dat
