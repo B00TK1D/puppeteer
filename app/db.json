@@ -2,6 +2,16 @@
     "exploits": {
         "0": {
             "id": "0",
+            "name": "catcher-1678432280",
+            "frequency": 60,
+            "path": "catcher-1678432280",
+            "flags_captured": 0,
+            "services_vulnerable": 0,
+            "service_id": "",
+            "log": {}
+        },
+        "1": {
+            "id": "1",
             "name": "DNS Zone Transfer",
             "frequency": 60,
             "path": "DNS Zone Transfer",
