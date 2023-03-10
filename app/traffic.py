@@ -116,7 +116,7 @@ def traffic_loop():
                         # Close SSH connection
                         ssh.close()
                         # Unzip traffic file
-                        os.system("gunzip -f " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + + ".pcap.gz"))
+                        os.system("gunzip -f " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + ".pcap.gz"))
                         # Catch flags in traffic file
                         catcher.catch(os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + + ".pcap"))
                         # Merge traffic file with existing traffic file
