@@ -25,11 +25,11 @@ def start_traffic_collection(agent):
             proxy_ip = agents.run_cmd(agent, "echo $SSH_CLIENT", ssh).split(" ")[0]
 
             # Install requirements
-            requirements = utils.read_file_contents(os.path.join(settings.AGENTS_DIR, "traffic", "unix", "requirements.txt")).split("\n")
+            requirements = utils.read_file_contents(os.path.join(settings.AGENTS_DIR, "init", "traffic", "unix", "requirements.txt")).split("\n")
             agents.install_requirements(agent, requirements, ssh)
             
             # Upload traffic collection script
-            agents.upload(agent, os.path.join(settings.AGENTS_DIR, "traffic", "unix", "start-traffic.sh"), "/tmp/start-traffic.sh", ssh)
+            agents.upload(agent, os.path.join(settings.AGENTS_DIR, "init", "traffic", "unix", "start-traffic.sh"), "/tmp/start-traffic.sh", ssh)
 
             # Start traffic collection
             agents.run_cmd(agent, "chmod +x /tmp/start-traffic.sh", ssh)
@@ -44,7 +44,7 @@ def stop_traffic_collection(agent):
         pass
     else:
         ssh = agents.connect(agent)
-        agents.upload(agent, os.path.join(settings.AGENTS_DIR, "traffic", "unix", "stop-traffic.sh"), "/tmp/stop-traffic.sh", ssh)
+        agents.upload(agent, os.path.join(settings.AGENTS_DIR, "init", "traffic", "unix", "stop-traffic.sh"), "/tmp/stop-traffic.sh", ssh)
         agents.run_cmd(agent, "chmod +x /tmp/stop-traffic.sh", ssh)
         agents.run_cmd(agent, "/tmp/stop-traffic.sh", ssh, sudo=True)
         agents.run_cmd(agent, "rm -f /tmp/stop-traffic.sh", ssh, sudo=True)
