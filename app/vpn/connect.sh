@@ -1,3 +1,3 @@
 #!/bin/sh
 
-openvpn vpn/vpn.dat
+sudo openvpn vpn/vpn.dat
