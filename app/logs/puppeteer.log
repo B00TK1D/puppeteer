@@ -7,3 +7,15 @@
 [2023-03-05 12:06:03]: auth - Login succeeded admin from 127.0.0.1
 [2023-03-05 12:06:41]: auth - Login succeeded admin from 127.0.0.1
 [2023-03-05 12:07:01]: auth - Login succeeded admin from 127.0.0.1
+[2023-03-10 04:23:47]: auth - Invalid login attempt: admin:44b6f49af6096071b3230e2d465266f0 from 127.0.0.1
+[2023-03-10 04:23:48]: auth - Invalid login attempt: admin:44b6f49af6096071b3230e2d465266f0 from 127.0.0.1
+[2023-03-10 04:23:49]: auth - Invalid login attempt: admin:44b6f49af6096071b3230e2d465266f0 from 127.0.0.1
+[2023-03-10 04:23:49]: auth - Invalid login attempt: admin:44b6f49af6096071b3230e2d465266f0 from 127.0.0.1
+[2023-03-10 04:23:50]: auth - Invalid login attempt: admin:44b6f49af6096071b3230e2d465266f0 from 127.0.0.1
+[2023-03-10 04:23:50]: auth - Invalid login attempt: admin:44b6f49af6096071b3230e2d465266f0 from 127.0.0.1
+[2023-03-10 04:23:51]: auth - Invalid login attempt: admin:44b6f49af6096071b3230e2d465266f0 from 127.0.0.1
+[2023-03-10 04:24:06]: auth - Invalid login attempt: admin:e7c7219eb08768a7962cc176503e3d7e from 127.0.0.1
+[2023-03-10 04:24:17]: auth - Invalid login attempt: admin:44b6f49af6096071b3230e2d465266f0 from 127.0.0.1
+[2023-03-10 04:24:22]: auth - Invalid login attempt: admin:e7c7219eb08768a7962cc176503e3d7e from 127.0.0.1
+[2023-03-10 04:24:26]: auth - Invalid login attempt: admin:e7c7219eb08768a7962cc176503e3d7e from 127.0.0.1
+[2023-03-10 04:24:36]: auth - Invalid login attempt: admin:44b6f49af6096071b3230e2d465266f0 from 127.0.0.1
