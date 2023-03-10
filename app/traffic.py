@@ -100,6 +100,7 @@ def traffic_loop():
     if os.path.exists("/opt/arkime/bin/capture"):
         p = subprocess.Popen(['sudo', '/opt/arkime/bin/capture', '-r', settings.TRAFFIC_DIR, '-m'])
     while True:
+        print("Pulling traffic")
         # Pull traffic from all agents
         for agent in db.data["agents"].values():
             try:
