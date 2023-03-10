@@ -59,7 +59,7 @@ def disconnect_vpn():
     global connect_p
     connect_p.kill()
     # Kill all openvpn processes
-    os.system("sudo killall openvpn")
+    os.system("sudo pkill openvpn")
 
     code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
 
