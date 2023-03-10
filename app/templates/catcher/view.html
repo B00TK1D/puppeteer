@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% set active_page = "Flag Catcher" %}
+{% set refresh_interval = 5 %}
+{% block content %}
+    <a class="button btn-secondary" href="/catcher">Back</a>
+    </br>
+    </br>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Client</th>
+            <th scope="col">Server</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for packet in catch.packets.values() %}
+            <tr>
+                {% if packet.dir == "in" %}
+                    <td><code></code></td>
+                    <td><code>{{ packet.bytes }}</code></td>
+                {% else %}
+                    <td><code>{{ packet.bytes }}</code></td>
+                    <td><code></code></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </br>
+    </br>
+    <a class="button btn-secondary" href="/catcher">Back</a>
+{% endblock %}
