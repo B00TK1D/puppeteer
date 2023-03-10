@@ -118,7 +118,7 @@ def traffic_loop():
                         # Unzip traffic file
                         os.system("gunzip -f " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + ".pcap.gz"))
                         # Catch flags in traffic file
-                        catcher.catch(os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + + ".pcap"))
+                        catcher.catch(os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + ".pcap"))
                         # Merge traffic file with existing traffic file
                         if MERGE_ALL:
                             if not os.path.exists(os.path.join(settings.TRAFFIC_DIR, "traffic.pcap")):
@@ -127,11 +127,11 @@ def traffic_loop():
                             else:
                                 # If the traffic file exists, merge the new traffic file with the existing traffic file
                                 # Copy the existing traffic file to the new traffic file
-                                os.system("mergecap -w " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap.tmp") + " " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap") + " " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + + ".pcap"))
+                                os.system("mergecap -w " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap.tmp") + " " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap") + " " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + ".pcap"))
                                 # Overwrite the existing traffic file with the new traffic file
                                 os.system("mv -f " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap.tmp") + " " + os.path.join(settings.TRAFFIC_DIR, "traffic.pcap"))
                                 # Delete the old traffic file
-                                os.system("rm -f " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + + ".pcap"))
+                                os.system("rm -f " + os.path.join(settings.TRAFFIC_DIR, agent["ip"] + "_" + str(timestamp) + ".pcap"))
             except Exception as e:
                 log.log("Error: " + traceback.format_exc())
         # Sleep for n seconds as defined in settings
