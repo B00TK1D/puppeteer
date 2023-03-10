@@ -11,4 +11,3 @@ app/vpn/connect.sh
 app/__pycache__/
 app/nohup.out
 app/update.sh
-app/submitter/submitter
