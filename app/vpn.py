@@ -63,7 +63,7 @@ def disconnect_vpn():
 
     code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
 
-    return flask.render_template("vpn/index.html", code = code, messages = ["VPN disconnected"])
+    return flask.redirect("/vpn?message=Disconnecting...")
 
 
 def update_vpn():
