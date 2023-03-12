@@ -7,8 +7,11 @@
     <a class="btn btn-secondary" href="/vpn/modify">Edit</a>
     <br/>
     <br/>
-    <a class="btn btn-primary" href="/api/vpn/connect">Connect</a>
-    <a class="btn btn-danger" href="/api/vpn/disconnect">Disconnect</a>
+    {% if vpn_status == 1 %}
+        <a class="btn btn-primary" href="/api/vpn/connect">Connect</a>
+    {% else %}
+        <a class="btn btn-danger" href="/api/vpn/disconnect">Disconnect</a>
+    {% endif %}
     <br/>
     <br/>
     <h3>Proxy</h3>

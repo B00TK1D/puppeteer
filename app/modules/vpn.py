@@ -8,6 +8,7 @@ from modules import proxy
 from modules import settings
 
 connect_p = None
+toggle = 0
 
 # Helper functions
 def get_status():
@@ -30,12 +31,13 @@ def get_status():
 
 # Frontend views
 def view_vpn():
+    global toggle
     code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
     status = get_status()
     messages = [flask.request.args.get("message")]
     if messages[0] == None:
         messages = []
-    return flask.render_template("vpn/index.html", code = code, status = status, messages = messages, proxy = proxy.status)
+    return flask.render_template("vpn/index.html", code = code, status = status, messages = messages, proxy = proxy.status, vpn_status = toggle)
 
 def view_modify_vpn():
     code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
@@ -48,24 +50,24 @@ def view_modify_vpn():
 
 # Backend functions
 def connect_vpn():
-    global connect_p
+    global connect_p, toggle
     os.system("chmod +x " + settings.VPN_CONNECT_FILE)
     connect_p = subprocess.Popen(['sudo', settings.VPN_CONNECT_FILE])
 
-    code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
+    toggle = 1
 
-    return flask.redirect("/vpn?message=Connecting...")
+    return flask.redirect("/vpn?message=Connecting...", vpn_status = 1)
 
 def disconnect_vpn():
-    global connect_p
+    global connect_p, toggle
     if connect_p != None:
         connect_p.kill()
     # Kill all openvpn processes
     os.system("sudo pkill openvpn")
 
-    code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
+    toggle = 0
 
-    return flask.redirect("/vpn?message=Disconnecting...")
+    return flask.redirect("/vpn?message=Disconnecting...", vpn_status = 0)
 
 def update_vpn():
     code = flask.request.form.get("code")
