@@ -4,6 +4,7 @@
 {% block content %}
     <h2>Status</h2>
     <p>{{ status }}</p>
+    <br/>
     <div class="btn-group" role="group">
         {% if vpn_status == 0 %}
             <a class="btn btn-primary" href="/api/vpn/connect">Connect</a>
