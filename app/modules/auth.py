@@ -39,17 +39,15 @@ def init():
     # Randomly generate jwt secret
     jwt_secret = binascii.b2a_hex(os.urandom(16))
 
-def validate(token):
-    global jwt_secret
+def current_user():
+    global jwt_secret, users
     try:
-        decoded = jwt.decode(token, jwt_secret, algorithms=["HS256"])
-        if decoded['username'] == 'admin':
-            return True
-        elif decoded['username'] in users:
-            return True
+        username = jwt.decode(flask.request.cookies.get('auth'), jwt_secret, algorithms=["HS256"])['username']
+        if username in users:
+            return users[username]
     except:
-        return False
-    return False
+        pass
+    return None
 
 
 # Frontend functions
@@ -73,11 +71,7 @@ def auth():
         return flask.render_template('login.html')
     if flask.request.path == '/api/login':
         return login_post_basic()
-    # Get auth cookie
-    token = flask.request.cookies.get('auth')
-    if token is None:
-        return flask.redirect('/login')
-    if not validate(token):
+    if current_user() is None:
         return flask.redirect('/login')
     return None
 
@@ -108,8 +102,8 @@ def logout_post_basic():
 
 def create_user():
     global users
-    username = flask.request.form.get("username")
-    password = flask.request.form.get("password")
+    username = flask.request.form.get("thing1")
+    password = flask.request.form.get("thing2")
     hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     if username in users:
         return flask.redirect("/users?messages=Username+already+exists")
@@ -124,3 +118,11 @@ def delete_user():
         return flask.redirect("/users?messages=Username+does+not+exist")
     del users[username]
     return flask.redirect("/users?messages=User+deleted")
+
+def change_password():
+    global jwt_secret, users
+    password = flask.request.form.get("password")
+    hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+    username = current_user()
+    users[username]["hash"] = hashed
+    return flask.redirect("/users?messages=Password+changed")

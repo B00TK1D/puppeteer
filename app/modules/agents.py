@@ -182,8 +182,8 @@ def view_new_agent():
 def create_agent():
     ip = flask.request.form.get("ip")
     port = int(flask.request.form.get("port"))
-    user = flask.request.form.get("user")
-    password = flask.request.form.get("password")
+    user = flask.request.form.get("thing1")
+    password = flask.request.form.get("thing2")
 
     # Extract IP address regex from ip field
     ip_regex = re.compile(r"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})")
