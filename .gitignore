@@ -3,6 +3,7 @@
 *.pcap
 *.pcap.gz
 *.json
+*.bak
 app/logs/puppeteer.log
 app/db.json
 app/vpn/vpn.dat
