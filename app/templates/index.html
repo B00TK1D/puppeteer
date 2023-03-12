@@ -27,7 +27,10 @@
     <br/>
     <h3>Backup and restore</h3>
     <a class="btn btn-primary" href="/api/backup/download" target="_">Download Backup</a>
-    <a class="btn btn-primary" href="/api/backup/upload">Upload Backup</a>
+    <form action="/api/backup/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="backup" id="backup" accept=".tar.gz">
+        <input type="submit" class="btn btn-primary" value="Upload Backup" name="submit">
+    </form>
     <br/>
     <br/>
     <p>{{ update_status }}</p>
