@@ -2,6 +2,13 @@
 {% set active_page = "Home" %}
 {% set refresh_interval = 20 %}
 {% block content %}
+    <h3>Users</h3>
+    <a href="/logout" class="btn btn-secondary">Logout</a>
+    <br/>
+    <a href="/users" class="btn btn-primary">Manage Users</a>
+    <br/>
+    <br/>
+    <h3>Statistics</h3>
     <table class="table table-hover table-bordered">
         <tbody>
         <tr>
@@ -22,7 +29,7 @@
         </tr>
         </tbody>
     </table>
-    <a class="btn btn-danger" href="/api/counters/reset">Reset Counters</a>
+    <a class="btn btn-danger" href="/api/counters/reset">Reset Statistics</a>
     <br/>
     <br/>
     <h3>Backup and restore</h3>
