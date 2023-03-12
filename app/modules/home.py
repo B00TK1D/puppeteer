@@ -1,9 +1,9 @@
 import flask
 
-import db
-import update
-import targets
-import submitter
+from modules import db
+from modules import update
+from modules import targets
+from modules import submitter
 
 def view_home():
     return flask.render_template(

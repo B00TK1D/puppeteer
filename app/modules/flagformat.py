@@ -1,7 +1,7 @@
 import re
 import flask
 
-import db
+from modules import db
 
 # Helper functions
 def extract_flags(text):

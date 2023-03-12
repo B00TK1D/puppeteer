@@ -1,19 +1,19 @@
 import flask
 
-import db
-import vpn
-import auth
-import home
-import teams
-import agents
-import update
-import catcher
-import targets
-import traffic
-import exploits
-import services
-import submitter
-import flagformat
+from modules import db
+from modules import vpn
+from modules import auth
+from modules import home
+from modules import teams
+from modules import agents
+from modules import update
+from modules import catcher
+from modules import targets
+from modules import traffic
+from modules import exploits
+from modules import services
+from modules import submitter
+from modules import flagformat
 
 
 

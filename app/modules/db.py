@@ -1,12 +1,12 @@
-import os
-import json
-import time
-import flask
-import shutil
-import itertools
-import threading
+from modules import os
+from modules import json
+from modules import time
+from modules import flask
+from modules import shutil
+from modules import itertools
+from modules import threading
 
-import settings
+from modules import settings
 
 paused = False
 

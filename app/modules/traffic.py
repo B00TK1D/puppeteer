@@ -5,12 +5,12 @@ import threading
 import traceback
 import subprocess
 
-import db
-import log
-import utils
-import agents
-import catcher
-import settings
+from modules import db
+from modules import log
+from modules import utils
+from modules import agents
+from modules import catcher
+from modules import settings
 
 MERGE_ALL = False
 

@@ -6,10 +6,10 @@ import paramiko
 import traceback
 import threading
 
-import db
-import log
-import utils
-import settings
+from modules import db
+from modules import log
+from modules import utils
+from modules import settings
 
 
 package_managers = {

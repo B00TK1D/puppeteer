@@ -3,8 +3,8 @@ import jwt
 import flask
 import binascii
 
-import db
-import log
+from modules import db
+from modules import log
 
 jwt_secret = ""
 admin_password = ""

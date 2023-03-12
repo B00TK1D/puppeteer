@@ -1,7 +1,7 @@
 import time
 
-import db
-import settings
+from modules import db
+from modules import settings
 
 log = {}
 exploit_log = {}

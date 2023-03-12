@@ -3,7 +3,7 @@ import time
 import flask
 import threading
 
-import db
+from modules import db
 
 update_status = "No updates available"
 

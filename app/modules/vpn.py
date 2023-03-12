@@ -3,8 +3,8 @@ import flask
 import psutil
 import subprocess
 
-import utils
-import settings
+from modules import utils
+from modules import settings
 
 connect_p = None
 

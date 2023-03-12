@@ -6,10 +6,10 @@ import threading
 import subprocess
 
 
-import db
-import log
-import settings
-import flagformat
+from modules import db
+from modules import log
+from modules import settings
+from modules import flagformat
 
 
 flagdb = {}

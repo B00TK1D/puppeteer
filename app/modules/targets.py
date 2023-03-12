@@ -1,7 +1,7 @@
 import flask
 
 
-import db
+from modules import db
 
 # Helper functions
 def list_targets():

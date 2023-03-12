@@ -4,11 +4,11 @@ import datetime
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
 
-import db
-import log
-import services
-import settings
-import flagformat
+from modules import db
+from modules import log
+from modules import services
+from modules import settings
+from modules import flagformat
 
 
 all_catches = {}
