@@ -7,15 +7,23 @@ status = "Inactive"
 # Helper functions
 def start_proxy():
     global proxy_process, status
-    proxy_process = subprocess.Popen(['sudo', 'docker', 'run', '-e', 'TZ=UTC', '-p', '3128:3128', 'ubuntu/squid'])
-    status = "Active"
+    try:
+        proxy_process = subprocess.Popen(['sudo', 'docker', 'run', '-e', 'TZ=UTC', '-p', '3128:3128', 'ubuntu/squid'])
+        status = "Active"
+    except:
+        status = "Error"
+
+
 
 def stop_proxy():
     global proxy_process, status
     if proxy_process != None:
-        proxy_process.terminate()
-        proxy_process = None
-        status = "Inactive"
+        try:
+            proxy_process.terminate()
+            proxy_process = None
+            status = "Inactive"
+        except:
+            status = "Error"
 
 
 # Backend functions
