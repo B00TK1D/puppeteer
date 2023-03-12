@@ -108,10 +108,10 @@ def create_backup():
             os.system("cp {} {}".format(os.path.join(settings.AGENTS_DIR, "init", f), os.path.join(settings.BACKUP_DIR, "agents")))
 
     # gzip backup directory
-    os.system("tar -czf {} {}".format(settings.BACKUP_FILE, settings.BACKUP_DIR))
+    #os.system("tar -czf {} {}".format(settings.BACKUP_FILE, settings.BACKUP_DIR))
 
     # Delete backup directory
-    os.system("rm -r {}".format(settings.BACKUP_DIR))
+    #os.system("rm -r {}".format(settings.BACKUP_DIR))
 
 def restore_backup():
     global data
