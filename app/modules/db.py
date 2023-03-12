@@ -35,8 +35,12 @@ def init():
 def save(file=settings.DB_FILE):
     global data
 
+    # Delete the previous file
+    if os.path.exists(file):
+        os.remove(file)
+
     # Write to file
-    with open(file, "w") as f:
+    with open(file, "x") as f:
         json.dump(data, f, indent=4)
 
 def load():
