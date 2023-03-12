@@ -10,6 +10,8 @@ from modules import settings
 
 paused = False
 
+data = {}
+
 # Helper functions
 def init():
     global data, id_iter
