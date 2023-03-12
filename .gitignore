@@ -5,7 +5,6 @@
 *.json
 app/logs/puppeteer.log
 app/db.json
-app/exploits/
 app/vpn/vpn.dat
 app/__pycache__/
 app/nohup.out
