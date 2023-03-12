@@ -6,7 +6,7 @@
     <form action="/api/vpn/update" method="post" enctype=multipart/form-data>
         {{ input("Config file (will be renamed to vpn/vpn.dat)", "file", "file", options="") }}
         <code>
-            <textarea class="form-control" id="code" name="code" rows="20">{{ code }}</textarea>
+            <textarea class="form-control" id="code" name="code" rows="5">{{ code }}</textarea>
         </code>
         <br/>
         <br/>
