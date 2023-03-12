@@ -65,8 +65,8 @@ def create_backup():
         os.makedirs(settings.BACKUP_DIR)
     else:
         # Delete old backups
-        for f in os.listdir(settings.BACKUP_DIR):
-            os.remove(os.path.join(settings.BACKUP_DIR, f))
+        os.system("sudo rm -r {}".format(settings.BACKUP_DIR))
+
 
     # Write data to file
     with open(os.path.join(settings.BACKUP_DIR, "db.json"), "w") as f:
