@@ -56,7 +56,7 @@ def connect_vpn():
 
     toggle = 1
 
-    return flask.redirect("/vpn?message=Connecting...", vpn_status = 1)
+    return flask.redirect("/vpn?message=Connecting...")
 
 def disconnect_vpn():
     global connect_p, toggle
@@ -67,7 +67,7 @@ def disconnect_vpn():
 
     toggle = 0
 
-    return flask.redirect("/vpn?message=Disconnecting...", vpn_status = 0)
+    return flask.redirect("/vpn?message=Disconnecting...")
 
 def update_vpn():
     code = flask.request.form.get("code")
