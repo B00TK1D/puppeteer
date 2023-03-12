@@ -112,15 +112,15 @@ def create_user():
     password = flask.request.form.get("password")
     hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     if username in users:
-        return flask.redirect("/users?message=User+" + str(username) + "+already+exists")
+        return flask.redirect("/users?messages=Username+already+exists")
     users[username] = {"username": username, "hash": hashed, "last_login": "Never"}
-    return flask.redirect("/users?message=User+" + str(username) + "+created")
+    return flask.redirect("/users?messages=User+created")
     
 
 def delete_user():
     global users
-    username = flask.request.form.get("username")
+    username = flask.request.args.get("username")
     if username not in users:
-        return flask.redirect("/users?message=User+" + str(username) + "+does+not+exist")
+        return flask.redirect("/users?messages=Username+does+not+exist")
     del users[username]
-    return flask.redirect("/users?message=User+" + str(username) + "+deleted")
+    return flask.redirect("/users?messages=User+deleted")
