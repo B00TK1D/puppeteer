@@ -16,8 +16,7 @@ def start_proxy():
 def stop_proxy():
     global status
     try:
-        os.system("sudo docker stop squid-container")
-        os.system("sudo docker rm squid-container")
+        os.system("sudo docker stop squid-container && sudo docker rm squid-container &")
         status = "Inactive"
     except:
         status = "Error"
