@@ -2,6 +2,7 @@ import os
 import json
 import time
 import flask
+import shutil
 import itertools
 import threading
 
@@ -80,7 +81,7 @@ def create_backup():
 
     for f in os.listdir(settings.EXPLOITS_DIR):
         if os.path.isfile(os.path.join(settings.EXPLOITS_DIR, f)):
-            os.system("cp {} {}".format(os.path.join(settings.EXPLOITS_DIR, f), os.path.join(settings.BACKUP_DIR, "exploits")))
+            shutil.copyfile(os.path.join(settings.EXPLOITS_DIR, f), os.path.join(settings.BACKUP_DIR, "exploits", f))
 
     # Recursively copy submitter from exploits/archive to backup/exploits/archive
     if not os.path.exists(os.path.join(settings.BACKUP_DIR, "exploits", "archive")):
@@ -88,16 +89,16 @@ def create_backup():
 
     for f in os.listdir(settings.EXPLOITS_ARCHIVE_DIR):
         if os.path.isfile(os.path.join(settings.EXPLOITS_ARCHIVE_DIR, f)):
-            os.system("cp {} {}".format(os.path.join(settings.EXPLOITS_ARCHIVE_DIR, f), os.path.join(settings.BACKUP_DIR, "exploits", "archive")))
+            shutil.copyfile(os.path.join(settings.EXPLOITS_ARCHIVE_DIR, f), os.path.join(settings.BACKUP_DIR, "exploits", "archive", f))
 
     # Copy submitter from submitter/submitter to backup/submitter
-    os.system("cp {} {}".format(settings.SUBMITTER_FILE, os.path.join(settings.BACKUP_DIR, "submitter")))
+    shutil.copyfile(settings.SUBMITTER_FILE, os.path.join(settings.BACKUP_DIR, "submitter"))
 
     # Copy vpn/connect.sh to backup/vpn/connect.sh
     if not os.path.exists(os.path.join(settings.BACKUP_DIR, "vpn")):
         os.makedirs(os.path.join(settings.BACKUP_DIR, "vpn"))
 
-    os.system("cp {} {}".format(settings.VPN_CONNECT_FILE, os.path.join(settings.BACKUP_DIR, "vpn", "connect.sh")))
+    shutil.copyfile(settings.VPN_CONNECT_FILE, os.path.join(settings.BACKUP_DIR, "vpn", "connect.sh"))
 
     # Copy agents/init to backup/agents/init
     if not os.path.exists(os.path.join(settings.BACKUP_DIR, "agents")):
@@ -105,13 +106,13 @@ def create_backup():
 
     for f in os.listdir(os.path.join(settings.AGENTS_DIR, "init")):
         if os.path.isfile(os.path.join(settings.AGENTS_DIR, "init", f)):
-            os.system("cp {} {}".format(os.path.join(settings.AGENTS_DIR, "init", f), os.path.join(settings.BACKUP_DIR, "agents")))
+            shutil.copyfile(os.path.join(settings.AGENTS_DIR, "init", f), os.path.join(settings.BACKUP_DIR, "agents", f))
 
     # gzip backup directory
-    #os.system("tar -czf {} {}".format(settings.BACKUP_FILE, settings.BACKUP_DIR))
+    os.system("tar -czf {} {}".format(settings.BACKUP_FILE, settings.BACKUP_DIR))
 
     # Delete backup directory
-    #os.system("rm -r {}".format(settings.BACKUP_DIR))
+    os.system("rm -r {}".format(settings.BACKUP_DIR))
 
 def restore_backup():
     global data
