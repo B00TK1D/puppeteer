@@ -28,11 +28,12 @@
     <h3>Backup and restore</h3>
     <form action="/api/backup/upload" method="post" enctype="multipart/form-data">
         <a class="btn btn-primary" href="/api/backup/download" target="_">Download Backup</a>
-        <input type="file" name="backup" id="backup" accept=".tar.gz" style="display:none;" onchange="this.form.submit()">
+        <input type="file" name="backup" id="backup" accept="application/gzip, .gz" style="display:none;" onchange="this.form.submit()">
         <input class="btn btn-primary" value="Upload Backup" onclick="document.getElementById('backup').click();">
     </form>
     <br/>
     <br/>
+    <h3>Updates</h3>
     <p>{{ update_status }}</p>
     <a class="btn btn-danger" href="/api/update">Update System</a>
 {% endblock %}
