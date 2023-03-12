@@ -10,3 +10,4 @@ app/vpn/vpn.dat
 app/__pycache__/
 app/nohup.out
 app/update.sh
+app/auth.py

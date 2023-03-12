@@ -233,3 +233,17 @@ def ignore_similar():
 def view_catcher():
     global all_catches
     return flask.render_template("catcher/index.html", catches=all_catches)
+
+
+
+def view_catch():
+    global all_catches
+
+    id = int(flask.request.args.get("id"))
+
+    if id not in all_catches:
+        return flask.render_template("catcher/index.html", catches=all_catches, messages=["Invalid - catch not found"])
+
+    catch = all_catches[id]
+
+    return flask.render_template("catcher/catch.html", catch=catch)

@@ -1,6 +1,7 @@
 import os
 import json
 import time
+import flask
 import itertools
 import threading
 
@@ -110,7 +111,6 @@ def create_backup():
     # Delete backup directory
     os.system("rm -rf {}".format(settings.BACKUP_DIR))
 
-
 def restore_backup():
     global data
     # Unzip backup.tar.gz
@@ -147,10 +147,20 @@ def restore_backup():
     load()
 
 
+# Backend functions
+def download_backup():
+    create_backup()
+    return flask.send_file(settings.BACKUP_FILE, as_attachment=True)
+
+def upload_backup():
+    if "backup" in flask.request.files:
+        backup = flask.request.files["backup"]
+        backup.save(settings.BACKUP_FILE)
+        restore_backup()
+    return flask.redirect("/")
 
 
-
-# Set up a backup thread that saves the database every 5 seconds
+# Thread functions
 def backup_loop():
     global paused
     while not paused:

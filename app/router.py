@@ -1,5 +1,6 @@
 import flask
 
+import db
 import vpn
 import auth
 import home
@@ -85,15 +86,18 @@ def route_flag_format():
 def route_teams():
     return teams.view_teams()
 
+
 ### Service Routes ###
 @app.route("/services", methods=["GET"])
 def route_services():
     return services.view_services()
 
+
 ### Target Routes ###
 @app.route("/targets", methods=["GET"])
 def route_targets():
     return targets.view_targets()
+
 
 ### Agent Routes ###
 @app.route("/agents", methods=["GET"])
@@ -108,6 +112,7 @@ def route_init_agent():
 def route_new_agent():
     return agents.view_new_agent()
 
+
 ### Catcher Routes ###
 @app.route("/catcher", methods=["GET"])
 def route_catcher():
@@ -116,6 +121,7 @@ def route_catcher():
 @app.route("/catcher/view", methods=["GET"])
 def route_catch():
     return catcher.view_catch()
+
 
 ### VPN Routes ###
 @app.route("/vpn", methods=["GET"])
@@ -126,10 +132,12 @@ def route_vpn():
 def route_modify_vpn():
     return vpn.view_modify_vpn()
 
+
 ### Logout Routes ###
 @app.route("/logout", methods=["GET"])
 def route_logout():
     return auth.logout()
+
 
 ### Dashboard Routes ###
 @app.route("/", methods=["GET"])
@@ -183,6 +191,7 @@ def route_update_submitter():
 def route_update_flag_format():
     return flagformat.update_flag_format()
 
+
 ### Team API ###
 @app.route("/api/teams/create", methods=["POST"])
 def route_create_team():
@@ -195,6 +204,7 @@ def route_update_team():
 @app.route("/api/teams/delete", methods=["GET"])
 def route_delete_team():
     return teams.delete_team()
+
 
 ### Service API ###
 @app.route("/api/services/create", methods=["POST"])
@@ -209,10 +219,12 @@ def route_update_service():
 def route_delete_service():
     return services.delete_service()
 
+
 ### Target API ###
 @app.route("/api/targets/update", methods=["POST"])
 def route_update_target():
     return targets.update_targets()
+
 
 ### Agent API ###
 @app.route("/api/agents/create", methods=["POST"])
@@ -231,6 +243,7 @@ def route_delete_agent():
 def route_update_agent_init():
     return agents.update_agent_init()
 
+
 ### Traffic API ###
 @app.route("/api/traffic/start", methods=["GET"])
 def route_start_traffic():
@@ -240,6 +253,7 @@ def route_start_traffic():
 def route_stop_traffic():
     return traffic.stop_capture()
 
+
 ### Catcher API ###
 @app.route("/api/catcher/build", methods=["GET"])
 def route_build_catcher():
@@ -248,6 +262,7 @@ def route_build_catcher():
 @app.route("/api/catcher/ignore", methods=["GET"])
 def route_ignore_catcher():
     return catcher.ignore_similar()
+
 
 ### VPN API ###
 @app.route("/api/vpn/update", methods=["POST"])
@@ -262,10 +277,22 @@ def route_start_vpn():
 def route_stop_vpn():
     return vpn.disconnect_vpn()
 
+
 ### Update API ###
 @app.route("/api/update", methods=["GET"])
 def route_update():
     return update.update()
+
+
+### Backup API ###
+@app.route("/api/backup/upload", methods=["GET"])
+def route_upload_backup():
+    return db.upload_backup()
+
+@app.route("/api/backup/download", methods=["GET"])
+def route_download_backup():
+    return db.download_backup()
+
 
 ### Dashboard API ###
 @app.route("/api/counters/reset", methods=["GET"])
