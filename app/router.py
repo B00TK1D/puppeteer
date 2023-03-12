@@ -133,6 +133,12 @@ def route_modify_vpn():
     return vpn.view_modify_vpn()
 
 
+### Users Routes ###
+@app.route("/users", methods=["GET"])
+def route_users():
+    return auth.view_users()
+
+
 ### Logout Routes ###
 @app.route("/logout", methods=["GET"])
 def route_logout():
@@ -276,6 +282,16 @@ def route_start_vpn():
 @app.route("/api/vpn/disconnect", methods=["GET"])
 def route_stop_vpn():
     return vpn.disconnect_vpn()
+
+
+### Users API ###
+@app.route("/api/users/create", methods=["POST"])
+def route_create_user():
+    return auth.create_user()
+
+@app.route("/api/users/delete", methods=["POST"])
+def route_delete_user():
+    return auth.delete_user()
 
 
 ### Update API ###

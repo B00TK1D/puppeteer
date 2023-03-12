@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% set active_page = "Teams" %}
+{% block content %}
+    <script>
+        window.history.replaceState({}, document.title, "/" + "users");
+    </script>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Actions</th>
+            <th scope="col">Last Login</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users.values() %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.last_login }}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-danger" href="/api/users/delete?username={{ user.username }}">Delete</a>
+                    </div>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br/>
+    <h3>Add New User</h3>
+    <form action="/api/users/create" method="post">
+        <table class="table table-hover table-bordered">
+            <tbody>
+                <tr>
+                    <td>
+                        {{ input("Username", "username", "text") }}
+                    </td>
+                    <td>
+                        {{ input("Password", "password", "password") }}
+                    </td>
+                    <td>
+                        <input class="btn btn-primary" type="submit" value="Add">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+{% endblock %}
