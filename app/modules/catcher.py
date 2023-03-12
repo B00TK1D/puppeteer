@@ -11,8 +11,6 @@ from modules import settings
 from modules import flagformat
 
 
-all_catches = {}
-
 ignore = []
 
 # Helper functions
@@ -58,7 +56,6 @@ def strip_ignores(catches):
 
 def catch(pcap):
     log.log("Catching flags from " + pcap)
-    global all_catches
     packets = rdpcap(pcap)
     sessions = packets.sessions(full_duplex)
     catches = {}
@@ -115,7 +112,7 @@ def catch(pcap):
     catches = strip_ignores(catches)
 
     for catch in catches.values():
-        all_catches[catch["id"]] = catch
+        db.data["catches"][catch["id"]] = catch
     return catches
 
 
@@ -184,8 +181,6 @@ def generate_exploit(catch):
     return id
     
 def remove_similar(catch):
-    global all_catches, ignore
-
     req_stream = []
     for packet in catch["packets"]:
         if packet["dir"] == "in":
@@ -193,34 +188,30 @@ def remove_similar(catch):
 
     ignore.append(req_stream)
 
-    all_catches = strip_ignores(all_catches)
+    db.data["catches"] = strip_ignores(db.data["catches"])
 
-    all_catches[catch["id"]] = catch
+    db.data["catches"][catch["id"]] = catch
 
 
 # Backend functions
 def build_exploit():
-    global all_catches
-
     id = int(flask.request.args.get("id"))
 
-    if id not in all_catches:
-        return flask.render_template("catcher/index.html", catches=all_catches, messages=["Invalid - catch not found"])
+    if id not in db.data["catches"]:
+        return flask.render_template("catcher/index.html", catches=db.data["catches"], messages=["Invalid - catch not found"])
     
-    catch = all_catches[id]
+    catch = db.data["catches"][id]
     id = generate_exploit(catch)
 
     return flask.redirect("/exploits/modify?id=" + id)
     
 def ignore_similar():
-    global all_catches
-
     id = int(flask.request.args.get("id"))
 
-    if id not in all_catches:
-        return flask.render_template("catcher/index.html", catches=all_catches, messages=["Invalid - catch not found"])
+    if id not in db.data["catches"]:
+        return flask.render_template("catcher/index.html", catches=db.data["catches"], messages=["Invalid - catch not found"])
     
-    catch = all_catches[id]
+    catch = db.data["catches"][id]
 
     remove_similar(catch)
 
@@ -229,18 +220,15 @@ def ignore_similar():
 
 # View functions
 def view_catcher():
-    global all_catches
-    return flask.render_template("catcher/index.html", catches=all_catches)
+    return flask.render_template("catcher/index.html", catches=db.data["catches"])
 
 
 def view_catch():
-    global all_catches
-
     id = int(flask.request.args.get("id"))
 
-    if id not in all_catches:
-        return flask.render_template("catcher/index.html", catches=all_catches, messages=["Invalid - catch not found"])
+    if id not in db.data["catches"]:
+        return flask.render_template("catcher/index.html", catches=db.data["catches"], messages=["Invalid - catch not found"])
 
-    catch = all_catches[id]
+    catch = db.data["catches"][id]
 
     return flask.render_template("catcher/view.html", catch=catch)

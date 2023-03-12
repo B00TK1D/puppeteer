@@ -22,6 +22,7 @@ def init():
         "services": {},
         "submissions" : {},
         "agents": {},
+        "catches": {},
         "settings": {
             "targetformat": settings.TARGET_DEFAULT_FORMAT,
             "flagformat": settings.FLAGFORMAT_DEFAULT_REGEX,
