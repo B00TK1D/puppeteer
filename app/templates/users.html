@@ -44,4 +44,10 @@
             </tbody>
         </table>
     </form>
+    <br/>
+    <h3>Change Password</h3>
+    <form action="/api/users/change_password" method="post" autocomplete="new-password">
+        {{ input("Password", "thing2", "password") }}
+        <input class="btn btn-primary" type="submit" value="Change">
+    </form>
 {% endblock %}

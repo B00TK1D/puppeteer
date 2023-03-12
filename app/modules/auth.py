@@ -121,7 +121,7 @@ def delete_user():
 
 def change_password():
     global jwt_secret, users
-    password = flask.request.form.get("password")
+    password = flask.request.form.get("thing2")
     hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     username = current_user()
     users[username]["hash"] = hashed
