@@ -9,4 +9,13 @@
     <br/>
     <a class="btn btn-primary" href="/api/vpn/connect">Connect</a>
     <a class="btn btn-danger" href="/api/vpn/disconnect">Disconnect</a>
+    <br/>
+    <br/>
+    <h3>Proxy</h3>
+    <p>Status: {{ proxy }}</p>
+    {% if proxy == "Active" %}
+        <a class="btn btn-danger" href="/api/proxy/stop">Stop</a>
+    {% else %}
+        <a class="btn btn-primary" href="/api/proxy/start">Start</a>
+    {% endif %}
 {% endblock %}

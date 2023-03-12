@@ -4,6 +4,7 @@ import psutil
 import subprocess
 
 from modules import utils
+from modules import proxy
 from modules import settings
 
 connect_p = None
@@ -26,6 +27,7 @@ def get_status():
             return "Connecting..."
     return "Disconnected"
 
+
 # Frontend views
 def view_vpn():
     code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
@@ -33,7 +35,7 @@ def view_vpn():
     messages = [flask.request.args.get("message")]
     if messages[0] == None:
         messages = []
-    return flask.render_template("vpn/index.html", code = code, status = status, messages = messages)
+    return flask.render_template("vpn/index.html", code = code, status = status, messages = messages, proxy = proxy.status)
 
 def view_modify_vpn():
     code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
@@ -54,7 +56,6 @@ def connect_vpn():
 
     return flask.redirect("/vpn?message=Connecting...")
 
-
 def disconnect_vpn():
     global connect_p
     if connect_p != None:
@@ -65,7 +66,6 @@ def disconnect_vpn():
     code = utils.read_file_contents(os.path.join(settings.VPN_CONNECT_FILE))
 
     return flask.redirect("/vpn?message=Disconnecting...")
-
 
 def update_vpn():
     code = flask.request.form.get("code")

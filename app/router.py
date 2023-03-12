@@ -4,6 +4,7 @@ from modules import db
 from modules import vpn
 from modules import auth
 from modules import home
+from modules import proxy
 from modules import teams
 from modules import agents
 from modules import update
@@ -282,6 +283,14 @@ def route_start_vpn():
 @app.route("/api/vpn/disconnect", methods=["GET"])
 def route_stop_vpn():
     return vpn.disconnect_vpn()
+
+@app.route("/api/proxy/start", methods=["GET"])
+def route_start_proxy():
+    return proxy.start()
+
+@app.route("/api/proxy/stop", methods=["GET"])
+def route_stop_proxy():
+    return proxy.stop()
 
 
 ### Users API ###
