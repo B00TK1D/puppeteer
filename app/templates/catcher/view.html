@@ -13,7 +13,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for packet in catch.packets.values() %}
+        {% for packet in catch.packets %}
             <tr>
                 {% if packet.dir == "in" %}
                     <td><code></code></td>
