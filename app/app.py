@@ -1,10 +1,10 @@
-import db
-import auth
-import router
-import update
-import traffic
-import exploits
-import submitter
+from modules import db
+from modules import auth
+from modules import router
+from modules import update
+from modules import traffic
+from modules import exploits
+from modules import submitter
 
 
 def main():
