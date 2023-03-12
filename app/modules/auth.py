@@ -73,7 +73,7 @@ def auth():
     if flask.request.path == '/api/login':
         return login_post_basic()
     if current_user() is None:
-        return flask.redirect('/login?messages=You+must+be+logged+in+to+access+this+page')
+        return flask.redirect('/login?messages=[You+must+be+logged+in+to+access+this+page]')
     return None
 
 def login_post_basic():
