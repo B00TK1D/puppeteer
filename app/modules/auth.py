@@ -73,7 +73,7 @@ def auth():
     if flask.request.path == '/api/login':
         return login_post_basic()
     if current_user() is None:
-        return flask.redirect('/login?messages=[You+must+be+logged+in+to+access+this+page]')
+        return flask.redirect('/login')
     return None
 
 def login_post_basic():
@@ -107,18 +107,18 @@ def create_user():
     password = flask.request.form.get("thing2")
     hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     if username in users:
-        return flask.redirect("/users?messages=Username+already+exists")
+        return flask.redirect("/users")
     users[username] = {"username": username, "hash": hashed, "last_login": "Never"}
-    return flask.redirect("/users?messages=User+created")
+    return flask.redirect("/users")
     
 
 def delete_user():
     global users
     username = flask.request.args.get("username")
     if username not in users:
-        return flask.redirect("/users?messages=Username+does+not+exist")
+        return flask.redirect("/users")
     del users[username]
-    return flask.redirect("/users?messages=User+deleted")
+    return flask.redirect("/users")
 
 def change_password():
     global jwt_secret, users
@@ -126,6 +126,6 @@ def change_password():
     hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     username = current_user()["username"]
     users[username]["hash"] = hashed
-    response = flask.make_response(flask.redirect('/login?messsages=Password+changed'))
+    response = flask.make_response(flask.redirect('/login'))
     response.set_cookie('auth', '', expires=0)
     return response
