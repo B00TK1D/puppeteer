@@ -1,2 +1,2 @@
 #!/bin/sh
-sudo nohup python3 app.py > logs/access.log 2>&1 &
+sudo nohup sudo python3 app.py > logs/access.log 2>&1 &
