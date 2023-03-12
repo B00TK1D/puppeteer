@@ -69,7 +69,7 @@ def create_backup():
 
 
     # Write data to file
-    with open(os.path.join(settings.BACKUP_DIR, "db.json"), "w") as f:
+    with open(os.path.join(settings.BACKUP_DIR, "db.json"), "x") as f:
         json.dump(backup, f, indent=4)
 
     # Recursively copy exploits from exploits to backup/exploits
