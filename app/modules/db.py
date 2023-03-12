@@ -32,18 +32,23 @@ def init():
 
     id_iter = itertools.count()
 
-def save():
+def save(file=settings.DB_FILE):
     global data
 
     # Write to file
-    with open(settings.DB_FILE, "w") as f:
+    with open(file, "w") as f:
         json.dump(data, f, indent=4)
 
 def load():
     global data
     try:
-        with open(settings.DB_FILE, "r") as f:
-            data = json.load(f)
+        if os.path.exists(settings.DB_FILE + ".bak"):
+            with open(settings.DB_FILE + ".bak", "r") as f:
+                data = json.load(f)
+            os.remove(settings.DB_FILE + ".bak")
+        else:
+            with open(settings.DB_FILE, "r") as f:
+                data = json.load(f)
     except FileNotFoundError:
         pass
 

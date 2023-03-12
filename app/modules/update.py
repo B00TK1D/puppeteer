@@ -4,6 +4,7 @@ import flask
 import threading
 
 from modules import db
+from modules import settings
 
 update_status = "No updates available"
 
@@ -17,6 +18,7 @@ def run_update():
     global update_status
     # Save current state
     db.save()
+    db.save(settings.DB_FILE + ".bak")
     # Stop backup thread
     db.pause()
     # Update the system
