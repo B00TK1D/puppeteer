@@ -27,7 +27,7 @@
     <br/>
     <h3>Backup and restore</h3>
     <a class="btn btn-primary" href="/api/backup/download" target="_">Download Backup</a>
-    <form action="/api/backup/upload" method="post" enctype="multipart/form-data">
+    <form  class="btn btn-primary" action="/api/backup/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="backup" id="backup" accept="tar.gz" style="display:none;" onchange="this.form.submit()">
         <input class="btn btn-primary" value="Upload Backup" name="submit" onclick="document.getElementById('backup').click();">
     </form>
