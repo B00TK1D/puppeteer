@@ -66,6 +66,7 @@ def create_backup():
     else:
         # Delete old backups
         os.system("sudo rm -r {}".format(settings.BACKUP_DIR))
+        os.system("sudo rm {}".format(settings.BACKUP_FILE))
 
 
     # Write data to file
@@ -109,7 +110,7 @@ def create_backup():
     os.system("tar -czf {} {}".format(settings.BACKUP_FILE, settings.BACKUP_DIR))
 
     # Delete backup directory
-    os.system("rm -rf {}".format(settings.BACKUP_DIR))
+    os.system("rm -r {}".format(settings.BACKUP_DIR))
 
 def restore_backup():
     global data
