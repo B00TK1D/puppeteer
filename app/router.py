@@ -285,7 +285,7 @@ def route_update():
 
 
 ### Backup API ###
-@app.route("/api/backup/upload", methods=["GET"])
+@app.route("/api/backup/upload", methods=["POST"])
 def route_upload_backup():
     return db.upload_backup()
 
