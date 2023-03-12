@@ -59,6 +59,48 @@ def load():
     except FileNotFoundError:
         pass
 
+    if "settings" not in data:
+        data["settings"] = {}
+    
+    if "targetformat" not in data["settings"]:
+        data["settings"]["targetformat"] = settings.TARGET_DEFAULT_FORMAT
+
+    if "flagformat" not in data["settings"]:
+        data["settings"]["flagformat"] = settings.FLAGFORMAT_DEFAULT_REGEX
+
+    if "submitrate" not in data["settings"]:
+        data["settings"]["submitrate"] = settings.SUBMITTER_DEFAULT_RATE
+
+    if "correctregex" not in data["settings"]:
+        data["settings"]["correctregex"] = settings.SUBMITTER_DEFAULT_CORRECT_REGEX
+
+    if "incorrectregex" not in data["settings"]:
+        data["settings"]["incorrectregex"] = settings.SUBMITTER_DEFAULT_INCORRECT_REGEX
+
+    if "password" not in data["settings"]:
+        data["settings"]["password"] = ""
+
+    if "exploits" not in data:
+        data["exploits"] = {}
+
+    if "flags" not in data:
+        data["flags"] = {}
+
+    if "teams" not in data:
+        data["teams"] = {}
+
+    if "services" not in data:
+        data["services"] = {}
+
+    if "submissions" not in data:
+        data["submissions"] = {}
+
+    if "agents" not in data:
+        data["agents"] = {}
+
+    if "catches" not in data:
+        data["catches"] = {}
+
 def pause():
     global backup_thread, paused
     paused = True
