@@ -26,10 +26,15 @@ package_managers = {
 # Helper functions
 def connect(agent):
     # Connect to agent
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(agent["ip"], agent["port"], agent["user"], agent["password"])
-    return ssh
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(agent["ip"], agent["port"], agent["user"], agent["password"])
+        return ssh
+    except:
+        log.log("Error: " + traceback.format_exc())
+        db["agents"][agent["ip"]]["status_code"] = -1
+        return None
 
 def run_cmd(agent, cmd, ssh=None, sudo=False, nohup=False):
     new = False
@@ -153,6 +158,7 @@ def init_agent(agent):
             # Close SSH connection
             ssh.close()
         db.data["agents"][agent["ip"]]["status"] = "Initialized"
+        db.data["agents"][agent["ip"]]["status_code"] = 1
     except Exception as e:
         db.data["agents"][agent["ip"]]["status"] = "Failed to initialize: " + traceback.format_exc()
 
@@ -208,6 +214,7 @@ def create_agent():
         "hostname": "",
         "os": "",
         "status": "Pending initialization...",
+        "status_code": 0,
         "admin": 0,
         "capture": 0
     }

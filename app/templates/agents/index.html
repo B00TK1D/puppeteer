@@ -23,7 +23,15 @@
         </thead>
         <tbody>
         {% for agent in agents.values() %}
-            <tr>
+            {% if agent.status_code == 0 %}
+                <tr class="table-warning">
+            {% elif agent.status_code == 1 %}
+                <tr class="table-info">
+            {% elif agent.status_code == 2 %}
+                <tr class="table-success">
+            {% else %}
+                <tr class="table-danger">
+            {% endif %}
                 <th scope="row">{{ agent.ip }}</th>
                 <th scope="row">{{ agent.port }}</th>
                 <th scope="row">{{ agent.hostname }}</th>

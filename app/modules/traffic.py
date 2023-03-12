@@ -38,19 +38,28 @@ def start_traffic_collection(agent):
             agents.run_cmd(agent, "/tmp/start-traffic.sh " + proxy_ip + " " + str(agent["port"]), ssh, sudo=True)
 
             ssh.close()
+
+            db.data["agents"][agent["ip"]]["status_code"] = 2
         except Exception as e:
             log.log("Error: " + traceback.format_exc())
+            db.data["agents"][agent["ip"]]["status_code"] = -1
 
 def stop_traffic_collection(agent):
-    if agent["os"] == "Windows":
-        pass
-    else:
-        ssh = agents.connect(agent)
-        agents.upload(agent, os.path.join(settings.AGENTS_DIR, "init", "traffic", "unix", "stop-traffic.sh"), "/tmp/stop-traffic.sh", ssh)
-        agents.run_cmd(agent, "chmod +x /tmp/stop-traffic.sh", ssh)
-        agents.run_cmd(agent, "/tmp/stop-traffic.sh", ssh, sudo=True)
-        agents.run_cmd(agent, "rm -f /tmp/stop-traffic.sh", ssh, sudo=True)
-        ssh.close()
+    try:
+        if agent["os"] == "Windows":
+            pass
+        else:
+            ssh = agents.connect(agent)
+            agents.upload(agent, os.path.join(settings.AGENTS_DIR, "init", "traffic", "unix", "stop-traffic.sh"), "/tmp/stop-traffic.sh", ssh)
+            agents.run_cmd(agent, "chmod +x /tmp/stop-traffic.sh", ssh)
+            agents.run_cmd(agent, "/tmp/stop-traffic.sh", ssh, sudo=True)
+            agents.run_cmd(agent, "rm -f /tmp/stop-traffic.sh", ssh, sudo=True)
+
+            db.data["agents"][agent["ip"]]["status_code"] = 1
+            ssh.close()
+    except Exception as e:
+        log.log("Error: " + traceback.format_exc())
+        db.data["agents"][agent["ip"]]["status_code"] = -1
 
 
 
