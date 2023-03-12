@@ -1,3 +1,4 @@
+import os
 import flask
 import subprocess
 
@@ -8,7 +9,7 @@ status = "Inactive"
 def start_proxy():
     global proxy_process, status
     try:
-        proxy_process = subprocess.Popen(['sudo', 'docker', 'run', '-e', 'TZ=UTC', '-p', '3128:3128', 'ubuntu/squid'])
+        proxy_process = subprocess.Popen(['sudo', 'docker', 'run', '--name', 'squid-container', '-e', 'TZ=UTC', '-p', '3128:3128', 'ubuntu/squid'])
         status = "Active"
     except:
         status = "Error"
@@ -20,6 +21,7 @@ def stop_proxy():
     if proxy_process != None:
         try:
             proxy_process.terminate()
+            subprocess.Popen(['sudo', 'docker', 'rm', 'squid-container'])
             proxy_process = None
             status = "Inactive"
         except:
