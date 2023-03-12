@@ -227,13 +227,10 @@ def ignore_similar():
     return flask.redirect("/catcher")    
 
 
-
-
 # View functions
 def view_catcher():
     global all_catches
     return flask.render_template("catcher/index.html", catches=all_catches)
-
 
 
 def view_catch():
@@ -246,4 +243,4 @@ def view_catch():
 
     catch = all_catches[id]
 
-    return flask.render_template("catcher/catch.html", catch=catch)
+    return flask.render_template("catcher/view.html", catch=catch)

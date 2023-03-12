@@ -101,6 +101,9 @@ def stop_capture():
 
     return flask.redirect("/agents?message=Traffic capture stopped")
 
+def download_pcap():
+    pcap = flask.request.args.get("pcap")
+    return flask.send_file(os.path.join(settings.TRAFFIC_DIR, pcap), as_attachment=True)
 
 # Thread functions
 def traffic_loop():
