@@ -96,16 +96,16 @@ def catch(pcap):
                 b = bytes(packet['TCP'].payload)
                 if len(b) > 0:
                     # Convert each byte to ascii if possible
-                    ascii = "".join([chr(x) if x < 128 else "\\x" + hex(x)[2:] for x in b])
+                    #ascii = "".join([chr(x) if x < 128 else "\\x" + hex(x)[2:] for x in b])
                     if packet['IP'].src == victim_ip:
                         catch['packets'].append({
                             "dir": "out",
-                            "bytes": ascii
+                            "bytes": str(b)
                         })
                     else:
                         catch['packets'].append({
                             "dir": "in",
-                            "bytes": ascii
+                            "bytes": str(b)
                         })
             catches[catch["id"]] = catch
 
@@ -133,8 +133,7 @@ def generate_exploit(catch):
     exploit += "\n"
     for packet in catch["packets"]:
         if packet["dir"] == "in":
-            payload = packet["bytes"].replace("\\", "\\\\").replace("\n", "\\n").replace("\r", "\\r").replace("\"", "\\\"")
-            exploit += "    s.sendall(b\"" + payload + "\")\n"
+            exploit += "    s.sendall(" + packet["bytes"].replace("\\\\", "\\") + ")\n"
         else:
             exploit += "    print(s.recv(65536))\n"
     exploit += "\n"
