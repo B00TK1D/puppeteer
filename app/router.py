@@ -289,7 +289,7 @@ def route_stop_vpn():
 def route_create_user():
     return auth.create_user()
 
-@app.route("/api/users/delete", methods=["POST"])
+@app.route("/api/users/delete", methods=["GET"])
 def route_delete_user():
     return auth.delete_user()
 
