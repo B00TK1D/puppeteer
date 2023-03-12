@@ -2,8 +2,8 @@
 {% set active_page = "VPN" %}
 {% set refresh_interval = 5 %}
 {% block content %}
-    <h2>Status</h2>
-    <p>{{ status }}</p>
+    <h2>VPN</h2>
+    <p>Status: {{ status }}</p>
     <div class="btn-group" role="group">
         {% if vpn_status == 0 %}
             <a class="btn btn-primary" href="/api/vpn/connect">Connect</a>
