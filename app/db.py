@@ -122,26 +122,26 @@ def restore_backup():
     # Recursively copy exploits from backup/exploits to exploits
     for f in os.listdir(os.path.join(settings.BACKUP_DIR, "exploits")):
         if os.path.isfile(os.path.join(settings.BACKUP_DIR, "exploits", f)):
-            os.system("cp {} {}".format(os.path.join(settings.BACKUP_DIR, "exploits", f), settings.EXPLOITS_DIR))
+            shutil.copyfile(os.path.join(settings.BACKUP_DIR, "exploits", f), os.path.join(settings.EXPLOITS_DIR, f))
 
     # Recursively copy submitter from backup/exploits/archive to exploits/archive
     for f in os.listdir(os.path.join(settings.BACKUP_DIR, "exploits", "archive")):
         if os.path.isfile(os.path.join(settings.BACKUP_DIR, "exploits", "archive", f)):
-            os.system("cp {} {}".format(os.path.join(settings.BACKUP_DIR, "exploits", "archive", f), settings.EXPLOITS_ARCHIVE_DIR))
+            shutil.copyfile(os.path.join(settings.BACKUP_DIR, "exploits", "archive", f), os.path.join(settings.EXPLOITS_ARCHIVE_DIR, f))
 
     # Copy submitter from backup/submitter to submitter/submitter
-    os.system("cp {} {}".format(os.path.join(settings.BACKUP_DIR, "submitter"), settings.SUBMITTER_FILE))
+    shutil.copyfile(os.path.join(settings.BACKUP_DIR, "submitter"), settings.SUBMITTER_FILE)
 
     # Copy vpn/connect.sh to backup/vpn/connect.sh
-    os.system("cp {} {}".format(os.path.join(settings.BACKUP_DIR, "vpn", "connect.sh"), settings.VPN_CONNECT_FILE))
+    shutil.copyfile(os.path.join(settings.BACKUP_DIR, "vpn", "connect.sh"), settings.VPN_CONNECT_FILE)
 
     # Copy agents/init to backup/agents/init
     for f in os.listdir(os.path.join(settings.BACKUP_DIR, "agents")):
         if os.path.isfile(os.path.join(settings.BACKUP_DIR, "agents", f)):
-            os.system("cp {} {}".format(os.path.join(settings.BACKUP_DIR, "agents", f), os.path.join(settings.AGENTS_DIR, "init")))
+            shutil.copyfile(os.path.join(settings.BACKUP_DIR, "agents", f), os.path.join(settings.AGENTS_DIR, "init", f))
 
     # Copy db.json to db.json
-    os.system("cp {} {}".format(os.path.join(settings.BACKUP_DIR, "db.json"), settings.DB_FILE))
+    shutil.copyfile(os.path.join(settings.BACKUP_DIR, "db.json"), settings.DB_FILE)
 
     # Delete backup directory
     os.system("rm -rf {}".format(settings.BACKUP_DIR))
