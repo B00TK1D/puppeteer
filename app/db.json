@@ -29,17 +29,6 @@
     },
     "submissions": {},
     "agents": {
-        "10.211.55.10": {
-            "ip": "10.211.55.10",
-            "port": 22,
-            "user": "ctf",
-            "password": "ctf123js",
-            "hostname": "ubuntu-linux-20-04-desktop",
-            "os": "Linux",
-            "status": "Idle",
-            "admin": 1,
-            "capture": 0
-        }
     },
     "settings": {
         "targetformat": "10.211.T.S",
