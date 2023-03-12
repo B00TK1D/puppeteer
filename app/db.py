@@ -160,7 +160,7 @@ def upload_backup():
         backup = flask.request.files["backup"]
         backup.save(settings.BACKUP_FILE)
         restore_backup()
-    return flask.redirect("/")
+    return flask.redirect("/login")
 
 
 # Thread functions
