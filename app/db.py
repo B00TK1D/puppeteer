@@ -60,13 +60,14 @@ def create_backup():
     global data
     backup = data.copy()
     
+    
+    # Delete old backups
+    os.system("sudo rm -r {}".format(settings.BACKUP_DIR))
+    os.system("sudo rm {}".format(settings.BACKUP_FILE))
+
     # Create backup folder
     if not os.path.exists(settings.BACKUP_DIR):
         os.makedirs(settings.BACKUP_DIR)
-    else:
-        # Delete old backups
-        os.system("sudo rm -r {}".format(settings.BACKUP_DIR))
-        os.system("sudo rm {}".format(settings.BACKUP_FILE))
 
 
     # Write data to file
