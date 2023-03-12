@@ -21,7 +21,7 @@ def stop_proxy():
     if proxy_process != None:
         try:
             proxy_process.terminate()
-            subprocess.Popen(['sudo', 'docker', 'rm', 'squid-container'])
+            subprocess.Popen(['sudo', 'docker', 'stop', 'squid-container'])
             proxy_process = None
             status = "Inactive"
         except:
