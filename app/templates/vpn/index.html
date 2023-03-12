@@ -7,7 +7,7 @@
     <br/>
     <br/>
     <div class="btn-group" role="group">
-        {% if vpn_status == 1 %}
+        {% if vpn_status == 0 %}
             <a class="btn btn-primary" href="/api/vpn/connect">Connect</a>
         {% else %}
             <a class="btn btn-danger" href="/api/vpn/disconnect">Disconnect</a>
