@@ -123,6 +123,6 @@ def change_password():
     global jwt_secret, users
     password = flask.request.form.get("thing2")
     hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-    username = current_user()
+    username = current_user()["username"]
     users[username]["hash"] = hashed
     return flask.redirect("/users?messages=Password+changed")
