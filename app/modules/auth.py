@@ -125,6 +125,6 @@ def change_password():
     hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     username = current_user()["username"]
     users[username]["hash"] = hashed
-    response = flask.make_response(flask.redirect('/login'))
+    response = flask.make_response(flask.redirect('/login?messsages=Password+changed'))
     response.set_cookie('auth', '', expires=0)
     return response
